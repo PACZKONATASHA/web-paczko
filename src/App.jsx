@@ -125,8 +125,12 @@ function Header() {
 // Componente Slideshow - una imagen a la vez con transicion
 function WorkSlideshow() {
   const images = [
-    '/img/imagen-yami.png',
-    '/img/imagen2-male.png',
+    '/img/cuadrado-1.jpeg',
+    '/img/cuadrado-2.jpeg',
+    '/img/cuadrado-3.jpeg',
+    '/img/cuadrado-5.jpeg',
+    '/img/cuadrado6.jpeg',
+    '/img/cuadrado-7.jpeg',
   ]
   const [current, setCurrent] = useState(0)
   const [visible, setVisible] = useState(true)
