@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --rosa: #B87473;
   --rosa-dark: #A66766;
   --rosa-light: #d4a5a4;
@@ -644,6 +644,12 @@ a {
   justify-content: center;
   position: relative;
   padding: 60px 20px;
+  animation: heroBgKenBurns 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroBgKenBurns {
+  0%   { background-size: 105%; }
+  100% { background-size: 115%; }
 }
 
 .heroBannerOverlay {
@@ -882,18 +888,18 @@ a {
 /* CONTENIDO DEBAJO DEL BANNER */
 .heroContent {
   padding: 100px 20px;
-  background: white;
+  background-image: url('/img/imagen-de-fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   position: relative;
 }
 
 .heroContent::before {
   content: '';
   position: absolute;
-  top: -50px;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, white);
+  inset: 0;
+  background: transparent;
   pointer-events: none;
 }
 
@@ -1365,8 +1371,6 @@ a {
   .btnCta {
     padding: 14px 24px !important;
     font-size: 14px !important;
-  }
-    color: var(--texto-secundario);
   }
 
   .heroActions {
@@ -2954,4 +2958,64 @@ textarea {
 
 section {
   animation: fadeIn 0.6s ease-out;
+}
+/* ====== WORK SLIDESHOW (una imagen a la vez) ====== */
+.heroPhotoColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.workSlideshow {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.workslideshowImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.6s ease;
+}
+
+.workslideshowImg.slide-visible {
+  opacity: 1;
+}
+
+.workslideshowImg.slide-hidden {
+  opacity: 0;
+}
+
+.workslideshowDots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.slideDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.slideDot.active {
+  background: white;
+  transform: scale(1.4);
 }

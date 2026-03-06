@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef } from 'react'
 
 // Hook personalizado para animaciones al scroll - se activa cada vez que el elemento entra en vista
 function useScrollAnimation(threshold = 0.01) {
@@ -122,6 +122,45 @@ function Header() {
   )
 }
 
+// Componente Slideshow - una imagen a la vez con transicion
+function WorkSlideshow() {
+  const images = [
+    '/img/imagen-yami.png',
+    '/img/imagen2-male.png',
+  ]
+  const [current, setCurrent] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(false)
+      setTimeout(() => {
+        setCurrent(prev => (prev + 1) % images.length)
+        setVisible(true)
+      }, 600)
+    }, 3500)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="workSlideshow">
+      <img
+        src={images[current]}
+        alt="Trabajo de diseno web"
+        className={`workslideshowImg ${visible ? 'slide-visible' : 'slide-hidden'}`}
+      />
+      <div className="workslideshowDots">
+        {images.map((_, i) => (
+          <span
+            key={i}
+            className={`slideDot ${i === current ? 'active' : ''}`}
+            onClick={() => { setCurrent(i); setVisible(true) }}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 // Componente Hero - Fullscreen con animaciones
 function Hero() {
   const [loaded, setLoaded] = useState(false)
@@ -173,13 +212,10 @@ function Hero() {
       <div className="heroContent" ref={contentRef}>
         <div className={`heroWrapper ${contentVisible ? 'animate-in' : ''}`}>
           <div className="heroPhotoColumn">
-            <div className="heroPhotoWrapper">
-              <img src="/img/foto-nati.jpg" alt="Natasha Paczko" className="heroPhoto" />
-              <div className="heroPhotoDecor"></div>
-            </div>
+            <WorkSlideshow />
           </div>
-          
-          <div className={`heroQuoteColumn ${contentVisible ? 'animate-section' : ''}`}>
+
+                    <div className={`heroQuoteColumn ${contentVisible ? 'animate-section' : ''}`}>
             <blockquote className="heroQuote">
               <div className="quoteIcon">"</div>
               <p>Genero sitios web con impacto visual, que transmiten una experiencia interactiva para el que la visita.</p>
