@@ -887,20 +887,23 @@ a {
 
 /* CONTENIDO DEBAJO DEL BANNER */
 .heroContent {
-  padding: 100px 20px;
+  padding: 40px 20px;
   background-image: url('/img/imagen-de-fondo.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
   position: relative;
+  min-height: 900px;
+  background-color: #f5f5f5;
 }
 
 .heroContent::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(1px);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(0.5px);
   pointer-events: none;
 }
 
@@ -1180,7 +1183,8 @@ a {
   }
 
   .heroContent {
-    padding: 60px 20px;
+    padding: 40px 20px;
+    min-height: 500px;
   }
 
   .heroContent::before {
