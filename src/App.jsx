@@ -196,13 +196,13 @@ function Hero() {
 
   return (
     <section className="hero" id="hero">
-      <div 
-        className="heroBanner" 
-        style={{ 
-          backgroundImage: "url('/img/escritorio-rosa.avif')",
-          backgroundPositionY: `${parallaxOffset * 0.5}px`
-        }}
-      >
+      <div className="heroBanner">
+        <img 
+          className="heroBannerImg" 
+          src="/img/escritorio-rosa.avif" 
+          alt="" 
+          aria-hidden="true"
+        />
         <div className="heroBannerOverlay"></div>
         <div className={`heroBannerContent ${loaded ? 'animate-in' : ''}`}>
           <span className="heroTag">
