@@ -122,8 +122,8 @@ function Header() {
   )
 }
 
-// Componente Slideshow - una imagen a la vez con transicion
-function WorkSlideshow() {
+// Componente Carrusel de trabajos - diseño moderno con múltiples imágenes visibles
+function WorkCarousel() {
   const images = [
     '/img/cuadrado-1.jpeg',
     '/img/cuadrado-2.jpeg',
@@ -133,34 +133,51 @@ function WorkSlideshow() {
     '/img/cuadrado-7.jpeg',
   ]
   const [current, setCurrent] = useState(0)
-  const [visible, setVisible] = useState(true)
+  const trackRef = useRef(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setCurrent(prev => (prev + 1) % images.length)
-        setVisible(true)
-      }, 600)
+      setCurrent(prev => (prev + 1) % images.length)
     }, 3500)
     return () => clearInterval(interval)
   }, [])
 
+  const goTo = (index) => setCurrent(index)
+  const goPrev = () => setCurrent(prev => (prev - 1 + images.length) % images.length)
+  const goNext = () => setCurrent(prev => (prev + 1) % images.length)
+
   return (
-    <div className="workSlideshow">
-      <img
-        src={images[current]}
-        alt="Trabajo de diseno web"
-        className={`workslideshowImg ${visible ? 'slide-visible' : 'slide-hidden'}`}
-      />
-      <div className="workslideshowDots">
+    <div className="workCarousel">
+      <button className="carouselArrow carouselArrowLeft" onClick={goPrev} aria-label="Anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div className="carouselViewport">
+        <div 
+          className="carouselTrack" 
+          ref={trackRef}
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
+          {images.map((img, i) => (
+            <div className="carouselSlide" key={i}>
+              <img src={img} alt={`Trabajo de diseño web ${i + 1}`} className="carouselImg" />
+            </div>
+          ))}
+        </div>
+      </div>
+      <button className="carouselArrow carouselArrowRight" onClick={goNext} aria-label="Siguiente">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div className="carouselDots">
         {images.map((_, i) => (
           <span
             key={i}
-            className={`slideDot ${i === current ? 'active' : ''}`}
-            onClick={() => { setCurrent(i); setVisible(true) }}
+            className={`carouselDot ${i === current ? 'active' : ''}`}
+            onClick={() => goTo(i)}
           />
         ))}
+      </div>
+      <div className="carouselProgress">
+        <div className="carouselProgressBar" style={{ width: `${((current + 1) / images.length) * 100}%` }} />
       </div>
     </div>
   )
@@ -214,12 +231,18 @@ function Hero() {
       </div>
 
       <div className="heroContent" ref={contentRef}>
-        <div className={`heroWrapper ${contentVisible ? 'animate-in' : ''}`}>
-          <div className="heroPhotoColumn">
-            <WorkSlideshow />
+        <div className={`heroShowcase ${contentVisible ? 'animate-in' : ''}`}>
+          
+          <div className="heroShowcaseHeader">
+            <span className="heroShowcaseLabel">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Mis trabajos
+            </span>
           </div>
 
-                    <div className={`heroQuoteColumn ${contentVisible ? 'animate-section' : ''}`}>
+          <WorkCarousel />
+
+          <div className={`heroMessageSection ${contentVisible ? 'animate-section' : ''}`}>
             <blockquote className="heroQuote">
               <div className="quoteIcon">"</div>
               <p>Genero sitios web con impacto visual, que transmiten una experiencia interactiva para el que la visita.</p>
@@ -236,6 +259,7 @@ function Hero() {
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </section>

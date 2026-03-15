@@ -888,95 +888,199 @@ a {
 
 /* CONTENIDO DEBAJO DEL BANNER */
 .heroContent {
-  padding: 40px 20px;
-  background-image: url('/img/imagen-de-fondo.png');
-  background-size: 100% auto;
-  background-position: top center;
-  background-repeat: repeat-y;
-  background-attachment: scroll;
+  padding: 60px 20px 80px;
+  background: linear-gradient(180deg, #faf8f8 0%, #f0edec 100%);
   position: relative;
-  min-height: 900px;
-  background-color: #f5f5f5;
 }
 
 .heroContent::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(0.5px);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, rgba(184, 116, 115, 0.08), transparent);
   pointer-events: none;
 }
 
-.heroWrapper {
-  max-width: 1200px;
+/* SHOWCASE LAYOUT - Todo centrado */
+.heroShowcase {
+  max-width: 900px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 48px;
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.heroWrapper.animate-in {
+.heroShowcase.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* COLUMNA IZQUIERDA: FOTO */
-.heroPhotoColumn {
+/* Header del showcase */
+.heroShowcaseHeader {
+  text-align: center;
+}
+
+.heroShowcaseLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: white;
+  border: 1px solid var(--gris-border);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--rosa);
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 12px rgba(184, 116, 115, 0.1);
+}
+
+.heroShowcaseLabel svg {
+  color: var(--rosa);
+}
+
+/* ====== CARRUSEL DE TRABAJOS ====== */
+.workCarousel {
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+}
+
+.carouselViewport {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carouselSlide {
+  min-width: 100%;
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.carouselImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Flechas del carrusel */
+.carouselArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(184, 116, 115, 0.2);
+  color: var(--rosa);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carouselArrow:hover {
+  background: var(--rosa);
+  color: white;
+  border-color: var(--rosa);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(184, 116, 115, 0.4);
+}
+
+.carouselArrowLeft {
+  left: -22px;
+}
+
+.carouselArrowRight {
+  right: -22px;
+}
+
+/* Dots del carrusel */
+.carouselDots {
   display: flex;
   justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.heroPhotoWrapper {
-  position: relative;
+.carouselDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gris-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
-.heroPhotoWrapper::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: -20px;
-  bottom: -20px;
-  background: linear-gradient(135deg, var(--rosa), var(--rosa-dark));
-  border-radius: 16px;
-  z-index: 0;
-  opacity: 0.3;
-  transition: all 0.5s ease;
+.carouselDot.active {
+  background: var(--rosa);
+  transform: scale(1.3);
+  border-color: var(--rosa-light);
 }
 
-.heroPhotoWrapper:hover::before {
-  transform: translate(-10px, -10px);
-  opacity: 0.5;
+.carouselDot:hover {
+  background: var(--rosa-light);
 }
 
-.heroPhoto {
-  position: relative;
-  z-index: 1;
+/* Barra de progreso */
+.carouselProgress {
   width: 100%;
-  max-width: 380px;
-  height: 480px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: var(--shadow-strong);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 200px;
+  height: 3px;
+  background: var(--gris-border);
+  border-radius: 3px;
+  margin: 12px auto 0;
+  overflow: hidden;
 }
 
-.heroPhotoWrapper:hover .heroPhoto {
-  transform: translate(-8px, -8px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+.carouselProgressBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rosa-light), var(--rosa));
+  border-radius: 3px;
+  transition: width 0.6s ease;
 }
+
+/* ====== MENSAJE / QUOTE CENTRADO ====== */
+.heroMessageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  max-width: 650px;
+}
+
+/* Ya definido en heroContent */
 
 /* COLUMNA DERECHA: CONTENIDO */
-.heroQuoteColumn {
+.heroQuoteColumn,
+.heroMessageSection {
   display: flex;
   flex-direction: column;
   gap: 28px;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .heroQuote {
@@ -988,7 +1092,6 @@ a {
   box-shadow: 0 8px 30px rgba(184, 116, 115, 0.15);
   position: relative;
   overflow: visible;
-  /* Estado inicial - oculto arriba */
   opacity: 0;
   transform: translateY(-40px);
   transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s, box-shadow 0.4s ease;
@@ -1023,18 +1126,19 @@ a {
   animation: quotePulse 3s ease-in-out infinite, dialogBounce 2s ease-in-out infinite;
 }
 
-/* Colita del globo de diálogo estilo cómic */
+/* Colita del globo de diálogo - apunta hacia arriba */
 .heroQuote::before {
   content: '';
   position: absolute;
-  left: -18px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  top: -14px;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-top: 14px solid transparent;
-  border-bottom: 14px solid transparent;
-  border-right: 18px solid white;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 16px solid white;
+  border-top: none;
   z-index: 2;
 }
 
@@ -1042,14 +1146,15 @@ a {
 .heroQuote::after {
   content: '';
   position: absolute;
-  left: -22px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-top: 16px solid transparent;
-  border-bottom: 16px solid transparent;
-  border-right: 20px solid var(--rosa);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 18px solid var(--rosa);
+  border-top: none;
   z-index: 1;
 }
 
@@ -1106,13 +1211,13 @@ a {
   line-height: 1.8;
   margin: 0;
   font-weight: 500;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+  text-align: center;
 }
 
 .heroActions {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
 }
 
@@ -1191,79 +1296,64 @@ a {
   }
 
   .heroContent::before {
-    display: none;
+  display: none;
+}
+
+.heroShowcase {
+  max-width: 100%;
+}
+
+.heroWrapper {
+  grid-template-columns: 1fr;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .heroWrapper {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    display: flex;
-    flex-direction: column;
-  }
+.heroWrapper.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  /* Móvil: Reorganizar - globo arriba, foto medio, texto+botón abajo */
-  .heroQuoteColumn {
-    display: contents;
-  }
-
-  .heroQuote {
-    order: 1;
-  }
-
-  .heroPhotoColumn {
-    order: 2;
-  }
-
-  .heroDescription {
-    order: 3;
+  /* Móvil: Quote y acciones centrados */
+  .heroQuoteColumn,
+  .heroMessageSection {
     text-align: center;
-  }
-
-  .heroActions {
-    order: 4;
     align-items: center;
-    width: 100%;
-  }
-
-  .heroPhotoWrapper::before {
-    top: 15px;
-    left: 15px;
-    right: -15px;
-    bottom: -15px;
-  }
-
-  .heroPhoto {
-    max-width: 300px;
-    height: 380px;
   }
 
   .heroQuote {
     padding: 28px 24px;
   }
 
-  /* En tablet/mobile, la colita apunta hacia abajo (hacia la foto) */
+  /* En tablet/mobile, la colita apunta hacia arriba (hacia el carrusel) */
   .heroQuote::before {
     left: 50%;
-    top: auto;
-    bottom: -14px;
+    top: -14px;
+    bottom: auto;
     transform: translateX(-50%);
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-top: 16px solid white;
-    border-bottom: none;
+    border-bottom: 16px solid white;
+    border-top: none;
+    border-right-color: transparent;
     z-index: 2;
   }
 
-  /* Borde rosa de la colita en mobile */
   .heroQuote::after {
     left: 50%;
-    top: auto;
-    bottom: -18px;
+    top: -18px;
+    bottom: auto;
     transform: translateX(-50%);
     border-left: 14px solid transparent;
     border-right: 14px solid transparent;
-    border-top: 18px solid var(--rosa);
-    border-bottom: none;
+    border-bottom: 18px solid var(--rosa);
+    border-top: none;
     border-right-color: transparent;
     width: 0;
     height: 0;
@@ -1306,29 +1396,28 @@ a {
   }
 
   .heroContent {
-    padding: 40px 16px;
+    padding: 40px 16px 60px;
   }
 
-  .heroWrapper {
-    gap: 25px;
+  .heroShowcase {
+    gap: 32px;
   }
 
   .heroDescription {
     font-size: 14px;
   }
 
-  .heroPhotoWrapper::before {
-    top: 10px;
-    left: 10px;
-    right: -10px;
-    bottom: -10px;
-    border-radius: 12px;
+  .carouselArrowLeft {
+    left: 8px;
   }
 
-  .heroPhoto {
-    max-width: 260px;
-    height: 320px;
-    border-radius: 12px;
+  .carouselArrowRight {
+    right: 8px;
+  }
+
+  .carouselArrow {
+    width: 36px;
+    height: 36px;
   }
 
   .heroQuote {
@@ -1336,28 +1425,27 @@ a {
     border-radius: 18px;
   }
 
-  /* En mobile, colita apunta hacia abajo (hacia la foto) */
   .heroQuote::before {
     left: 50%;
-    top: auto;
-    bottom: -12px;
+    top: -12px;
+    bottom: auto;
     transform: translateX(-50%);
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 14px solid white;
-    border-bottom: none;
+    border-bottom: 14px solid white;
+    border-top: none;
     z-index: 2;
   }
 
   .heroQuote::after {
     left: 50%;
-    top: auto;
-    bottom: -16px;
+    top: -16px;
+    bottom: auto;
     transform: translateX(-50%);
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-top: 16px solid var(--rosa);
-    border-bottom: none;
+    border-bottom: 16px solid var(--rosa);
+    border-top: none;
     width: 0;
     height: 0;
     z-index: 1;
@@ -2976,57 +3064,4 @@ section {
   align-items: center;
 }
 
-.workSlideshow {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  background: #fff;
-  flex-shrink: 0;
-}
-
-.workslideshowImg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.6s ease;
-}
-
-.workslideshowImg.slide-visible {
-  opacity: 1;
-}
-
-.workslideshowImg.slide-hidden {
-  opacity: 0;
-}
-
-.workslideshowDots {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.slideDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.55);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-}
-
-.slideDot.active {
-  background: white;
-  transform: scale(1.4);
-}
+/* Estilos de carrusel ya definidos arriba */
