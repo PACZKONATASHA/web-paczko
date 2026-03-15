@@ -1480,7 +1480,7 @@ a {
   left: 0;
   top: 10px;
   font-weight: 700;
-  color: var(--rosa-dark) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   font-size: 14px;
   animation: arrowBounce 1.5s ease-in-out infinite;
   display: inline-block !important;
@@ -2684,7 +2684,7 @@ textarea {
 .diferencialIcon svg {
   width: 50px;
   height: 50px;
-  stroke: var(--rosa);
+  stroke: var(--blanco);
   stroke-width: 1.5;
   fill: none;
 }
