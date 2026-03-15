@@ -633,8 +633,8 @@ a {
 /* BANNER PRINCIPAL CON IMAGEN - FULLSCREEN EN MÓVIL */
 .heroBanner {
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -645,11 +645,12 @@ a {
   position: relative;
   padding: 60px 20px;
   animation: heroBgKenBurns 20s ease-in-out infinite alternate;
+  overflow: hidden;
 }
 
 @keyframes heroBgKenBurns {
-  0%   { background-size: 105%; }
-  100% { background-size: 115%; }
+  0%   { background-size: 120%; }
+  100% { background-size: 130%; }
 }
 
 .heroBannerOverlay {
@@ -1145,10 +1146,12 @@ a {
 /* RESPONSIVE TABLET Y MOBILE */
 @media (max-width: 899px) {
   .heroBanner {
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
     background-attachment: scroll;
     padding: 80px 20px;
+    background-size: 130% !important;
+    background-position: center center !important;
   }
 
   .heroTag {
