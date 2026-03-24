@@ -198,7 +198,7 @@ function Hero() {
             </div>
             <div className="heroButtons">
               <a className="btnHeroPrimary" href="#mis-trabajos">Ver proyectos</a>
-              <a className="btnHeroSecondary" href="https://wa.me/5493786417162?text=Hola%2C%20quiero%20consultar%20por%20una%20web" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+              <a className="btnHeroSecondary" href="https://wa.me/5493786417162?text=Hola%2C%20quiero%20consultar%20por%20una%20web" target="_blank" rel="noopener">Contactame</a>
             </div>
           </div>
         </div>

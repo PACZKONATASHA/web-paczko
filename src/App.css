@@ -592,21 +592,24 @@ img { display: block; max-width: 100%; }
 .btnHeroSecondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.04em;
   color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
-  padding: 13px 24px;
+  background: var(--violet);
+  border: none;
+  padding: 14px 28px;
   border-radius: 100px;
   text-decoration: none;
   transition: all var(--transition-fast);
+  box-shadow: 0 4px 20px rgba(155, 126, 200, 0.4);
 }
 
 .btnHeroSecondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(155, 126, 200, 0.6);
+  background: #8A6DB5;
   color: #fff;
 }
 
@@ -1748,100 +1751,89 @@ img { display: block; max-width: 100%; }
     height: 36px;
   }
 
-  /* Hero mobile — mismo layout que desktop (lado a lado) */
+  /* Hero mobile — 2 columnas, card izquierda + foto derecha */
   .heroSplit {
-    grid-template-columns: 52% 48%;
+    display: grid;
+    grid-template-columns: 55% 45%;
     min-height: 100vh;
     min-height: 100dvh;
   }
 
+  /* Card izquierda — centrada verticalmente con espacio para el nav */
   .heroSplitLeft {
-    order: 1;
-    padding: 80px 8px 12px 8px;
-    align-items: center;
-    justify-content: flex-start;
+    padding: 64px 10px 20px 28px;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .heroTextBox {
-    padding: 24px 18px;
+    width: 100%;
     max-width: 100%;
-    border-radius: var(--radius);
+    padding: 20px 14px;
+    border-radius: 18px;
     gap: 0;
   }
 
+  /* Ocultar solo algunos elementos */
+  .heroEyebrow { 
+    display: block;
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+  .heroMainSubtitle { 
+    display: block;
+    font-size: clamp(12px, 3vw, 14px);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .heroBenefits   { display: none; }
+
+  /* Título grande y visible */
   .heroMainTitle {
-    font-size: clamp(18px, 5.5vw, 26px);
-    margin-bottom: 14px;
-    line-height: 1.15;
+    font-size: clamp(24px, 7vw, 34px);
+    line-height: 1.1;
+    margin-bottom: 12px;
   }
 
+  /* Botones apilados, ancho completo */
   .heroButtons {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
     width: 100%;
+    gap: 10px;
   }
 
   .btnHeroPrimary,
   .btnHeroSecondary {
-    flex: 1;
-    min-width: 0;
+    width: 100%;
     justify-content: center;
-    padding: 10px 8px;
-    font-size: 10px;
+    text-align: center;
+    padding: 11px 8px;
+    font-size: 12px;
+    letter-spacing: 0.01em;
+    min-height: 40px;
   }
 
+  /* Foto derecha — pegada al borde como parada */
   .heroSplitRight {
-    order: 2;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
   }
 
   .heroPhoto {
     position: absolute;
-    bottom: -5%;
-    left: 50%;
-    transform: translateX(-50%);
-    top: auto;
-    height: 90%;
+    bottom: 0;
+    right: -32px;
+    left: auto;
+    top: 55px;
+    transform: none;
+    height: 95%;
     width: auto;
-  }
-
-  .heroTextBox {
-    align-items: flex-start;
-  }
-
-  .heroEyebrow {
-    display: none;
-  }
-
-  .heroMainTitle {
-    font-size: clamp(20px, 6vw, 30px);
-    margin-bottom: 16px;
-    text-align: left;
-  }
-
-  .heroMainSubtitle {
-    display: none;
-  }
-
-  .heroBenefits {
-    display: none;
-  }
-
-  .heroButtons {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-  }
-
-  .btnHeroPrimary,
-  .btnHeroSecondary {
-    width: 100%;
-    justify-content: center;
-    padding: 7px 8px;
-    font-size: 9px;
-    letter-spacing: 0.03em;
+    max-width: none;
+    object-fit: contain;
+    object-position: bottom right;
   }
 
   /* Sections */
@@ -1881,27 +1873,38 @@ img { display: block; max-width: 100%; }
   }
 }
 
-/* ====== RESPONSIVE — SMALL MOBILE (≤400px) ====== */
-@media (max-width: 400px) {
+/* ====== RESPONSIVE — SMALL MOBILE (≤430px) ====== */
+@media (max-width: 430px) {
+  .heroSplit {
+    grid-template-columns: 56% 44%;
+  }
+
   .heroSplitLeft {
-    padding: 70px 12px 32px 14px;
+    padding: 70px 6px 20px 10px;
+  }
+
+  .heroTextBox {
+    padding: 18px 12px;
+    border-radius: 16px;
   }
 
   .heroMainTitle {
-    font-size: clamp(24px, 7vw, 32px);
+    font-size: clamp(22px, 6.5vw, 30px);
+    margin-bottom: 16px;
   }
 
-  .heroMainSubtitle {
-    font-size: 13px;
+  .heroButtons {
+    gap: 8px;
   }
 
   .btnHeroPrimary,
   .btnHeroSecondary {
-    padding: 10px 14px;
+    padding: 10px 6px;
     font-size: 11px;
-  }
-
-  .heroBenefit {
-    font-size: 9px;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 1.3;
+    white-space: normal;
+    word-break: keep-all;
   }
 }
