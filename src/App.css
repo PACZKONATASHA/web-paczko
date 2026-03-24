@@ -1909,6 +1909,64 @@ img { display: block; max-width: 100%; }
   }
 }
 
+/* ====== RESPONSIVE — ULTRA TINY MOBILE (≤200px) ====== */
+@media (max-width: 200px) {
+  .heroSplit {
+    grid-template-columns: 65% 35%;
+  }
+
+  .heroSplitLeft {
+    padding: 48px 4px 16px 6px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .heroTextBox {
+    padding: 11px 7px;
+    border-radius: 11px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .heroEyebrow {
+    font-size: 6px;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .heroMainTitle {
+    font-size: 13px;
+    margin-bottom: 7px;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+
+  .heroMainSubtitle {
+    font-size: 7px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .heroButtons {
+    gap: 4px;
+    flex-direction: column;
+  }
+
+  .btnHeroPrimary,
+  .btnHeroSecondary {
+    padding: 6px 5px;
+    font-size: 7px;
+    min-height: 26px;
+    width: 100%;
+  }
+
+  .heroPhoto {
+    right: -48px !important;
+    top: 48px !important;
+    height: 85% !important;
+  }
+}
+
 /* ====== RESPONSIVE — ULTRA SMALL MOBILE (≤250px) ====== */
 @media (max-width: 250px) {
   .heroSplit {
