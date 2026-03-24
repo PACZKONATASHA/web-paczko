@@ -1751,89 +1751,95 @@ img { display: block; max-width: 100%; }
     height: 36px;
   }
 
-  /* Hero mobile — 2 columnas, card izquierda + foto derecha */
+  /* ── Hero mobile: 2 columnas lado a lado, igual que desktop ── */
   .heroSplit {
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 52% 48%;
     min-height: 100vh;
     min-height: 100dvh;
   }
 
-  /* Card izquierda — centrada verticalmente con espacio para el nav */
+  /* Columna izquierda: card centrada verticalmente */
   .heroSplitLeft {
-    padding: 64px 10px 20px 28px;
+    padding: 62px 8px 20px 12px;
     align-items: flex-start;
     justify-content: center;
   }
 
+  /* Card: ocupa el ancho de su columna */
   .heroTextBox {
     width: 100%;
     max-width: 100%;
-    padding: 20px 14px;
+    padding: 18px 14px;
     border-radius: 18px;
     gap: 0;
   }
 
-  /* Ocultar solo algunos elementos */
-  .heroEyebrow { 
+  /* Todos los elementos visibles */
+  .heroEyebrow {
+    display: inline-block;
+    font-size: clamp(7px, 1.8vw, 10px);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .heroMainTitle {
+    font-size: clamp(16px, 4.8vw, 26px);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .heroMainSubtitle {
     display: block;
-    font-size: 10px;
+    font-size: clamp(9px, 2.4vw, 12px);
+    line-height: 1.4;
     margin-bottom: 10px;
   }
-  .heroMainSubtitle { 
-    display: block;
-    font-size: clamp(12px, 3vw, 14px);
-    line-height: 1.4;
-    margin-bottom: 16px;
-  }
-  .heroBenefits   { display: none; }
 
-  /* Título grande y visible */
-  .heroMainTitle {
-    font-size: clamp(24px, 7vw, 34px);
-    line-height: 1.1;
+  .heroBenefits {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
     margin-bottom: 12px;
   }
 
-  /* Botones apilados, ancho completo */
+  .heroBenefit {
+    font-size: clamp(8px, 2vw, 11px);
+  }
+
   .heroButtons {
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 7px;
   }
 
   .btnHeroPrimary,
   .btnHeroSecondary {
     width: 100%;
     justify-content: center;
-    text-align: center;
-    padding: 11px 8px;
-    font-size: 12px;
+    padding: 10px 8px;
+    font-size: clamp(9px, 2.6vw, 12px);
+    white-space: nowrap;
     letter-spacing: 0.01em;
-    min-height: 40px;
   }
 
-  /* Foto derecha — pegada al borde como parada */
+  /* Columna derecha: foto llena toda la columna */
   .heroSplitRight {
     position: relative;
-    overflow: visible;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    overflow: hidden;
+    display: block;
   }
 
   .heroPhoto {
     position: absolute;
-    bottom: 0;
-    right: -32px;
-    left: auto;
-    top: 55px;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    object-fit: cover;
+    object-position: top center;
     transform: none;
-    height: 95%;
-    width: auto;
     max-width: none;
-    object-fit: contain;
-    object-position: bottom right;
   }
 
   /* Sections */
@@ -1873,195 +1879,80 @@ img { display: block; max-width: 100%; }
   }
 }
 
-/* ====== RESPONSIVE — SMALL MOBILE (≤430px) ====== */
-@media (max-width: 430px) {
-  .heroSplit {
-    grid-template-columns: 56% 44%;
-  }
-
-  .heroSplitLeft {
-    padding: 70px 6px 20px 10px;
-  }
-
+/* ====== RESPONSIVE — SMALL MOBILE (≤360px) ====== */
+@media (max-width: 360px) {
   .heroTextBox {
-    padding: 18px 12px;
-    border-radius: 16px;
+    padding: 14px 10px;
+    border-radius: 14px;
   }
 
   .heroMainTitle {
-    font-size: clamp(22px, 6.5vw, 30px);
-    margin-bottom: 16px;
-  }
-
-  .heroButtons {
-    gap: 8px;
-  }
-
-  .btnHeroPrimary,
-  .btnHeroSecondary {
-    padding: 10px 6px;
-    font-size: 11px;
-    letter-spacing: 0;
-    text-align: center;
-    line-height: 1.3;
-    white-space: normal;
-    word-break: keep-all;
-  }
-}
-
-/* ====== RESPONSIVE — ULTRA TINY MOBILE (≤200px) ====== */
-@media (max-width: 200px) {
-  .heroSplit {
-    grid-template-columns: 65% 35%;
-  }
-
-  .heroSplitLeft {
-    padding: 48px 4px 16px 6px;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .heroTextBox {
-    padding: 11px 7px;
-    border-radius: 11px;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .heroEyebrow {
-    font-size: 6px;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .heroMainTitle {
-    font-size: 13px;
-    margin-bottom: 7px;
-    line-height: 1.15;
-    font-weight: 700;
-  }
-
-  .heroMainSubtitle {
-    font-size: 7px;
-    line-height: 1.25;
-    margin-bottom: 8px;
-  }
-
-  .heroButtons {
-    gap: 4px;
-    flex-direction: column;
-  }
-
-  .btnHeroPrimary,
-  .btnHeroSecondary {
-    padding: 6px 5px;
-    font-size: 7px;
-    min-height: 26px;
-    width: 100%;
-  }
-
-  .heroPhoto {
-    right: -48px !important;
-    top: 48px !important;
-    height: 85% !important;
-  }
-}
-
-/* ====== RESPONSIVE — ULTRA SMALL MOBILE (≤250px) ====== */
-@media (max-width: 250px) {
-  .heroSplit {
-    grid-template-columns: 55% 45%;
-  }
-
-  .heroSplitLeft {
-    padding: 50px 6px 16px 10px;
-  }
-
-  .heroTextBox {
-    padding: 12px 8px;
-    border-radius: 12px;
-  }
-
-  .heroEyebrow {
-    font-size: 7px;
+    font-size: clamp(14px, 4.2vw, 18px);
     margin-bottom: 6px;
   }
 
-  .heroMainTitle {
-    font-size: 14px;
-    margin-bottom: 8px;
-    line-height: 1.1;
-  }
-
   .heroMainSubtitle {
-    font-size: 9px;
-    line-height: 1.2;
-    margin-bottom: 10px;
+    font-size: clamp(8px, 2.2vw, 10px);
+    margin-bottom: 8px;
   }
 
-  .heroButtons {
-    gap: 5px;
+  .heroBenefits {
+    margin-bottom: 8px;
   }
 
   .btnHeroPrimary,
   .btnHeroSecondary {
-    padding: 7px 4px;
-    font-size: 9px;
-    min-height: 30px;
-  }
-
-  .heroPhoto {
-    right: -35px !important;
-    top: 45px !important;
-    height: 88% !important;
+    padding: 8px 6px;
+    font-size: clamp(8px, 2.4vw, 10px);
   }
 }
 
 /* ====== RESPONSIVE — ULTRA SMALL MOBILE (≤280px) ====== */
 @media (max-width: 280px) {
   .heroSplit {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 54% 46%;
   }
 
   .heroSplitLeft {
-    padding: 60px 8px 20px 12px;
+    padding: 56px 6px 16px 8px;
   }
 
   .heroTextBox {
-    padding: 16px 10px;
-    border-radius: 14px;
+    padding: 10px 8px;
+    border-radius: 12px;
   }
 
   .heroEyebrow {
-    font-size: 8px;
-    margin-bottom: 8px;
+    font-size: 6px;
+    margin-bottom: 4px;
   }
 
   .heroMainTitle {
-    font-size: clamp(16px, 4vw, 20px);
-    margin-bottom: 10px;
+    font-size: clamp(11px, 4vw, 14px);
+    margin-bottom: 5px;
   }
 
   .heroMainSubtitle {
-    font-size: 10px;
-    line-height: 1.3;
-    margin-bottom: 12px;
+    font-size: 7px;
+    margin-bottom: 6px;
+  }
+
+  .heroBenefits {
+    gap: 2px;
+    margin-bottom: 6px;
+  }
+
+  .heroBenefit {
+    font-size: 6px;
   }
 
   .heroButtons {
-    gap: 6px;
+    gap: 4px;
   }
 
   .btnHeroPrimary,
   .btnHeroSecondary {
-    padding: 9px 5px;
-    font-size: 10px;
-    min-height: 34px;
-  }
-
-  .heroPhoto {
-    right: -45px !important;
-    top: 50px !important;
-    height: 90% !important;
+    padding: 6px 4px;
+    font-size: 7px;
   }
 }
