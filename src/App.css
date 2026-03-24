@@ -1908,3 +1908,52 @@ img { display: block; max-width: 100%; }
     word-break: keep-all;
   }
 }
+
+/* ====== RESPONSIVE — ULTRA SMALL MOBILE (≤320px) ====== */
+@media (max-width: 320px) {
+  .heroSplit {
+    grid-template-columns: 50% 50%;
+  }
+
+  .heroSplitLeft {
+    padding: 60px 8px 20px 20px;
+  }
+
+  .heroTextBox {
+    padding: 16px 10px;
+    border-radius: 14px;
+  }
+
+  .heroEyebrow {
+    font-size: 8px;
+    margin-bottom: 8px;
+  }
+
+  .heroMainTitle {
+    font-size: clamp(16px, 4vw, 20px);
+    margin-bottom: 10px;
+  }
+
+  .heroMainSubtitle {
+    font-size: 10px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .heroButtons {
+    gap: 6px;
+  }
+
+  .btnHeroPrimary,
+  .btnHeroSecondary {
+    padding: 9px 5px;
+    font-size: 10px;
+    min-height: 34px;
+  }
+
+  .heroPhoto {
+    right: -28px !important;
+    top: 50px !important;
+    height: 90% !important;
+  }
+}
