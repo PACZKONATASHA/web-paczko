@@ -37,20 +37,6 @@ function useScrollAnimation(threshold = 0.01) {
   return [ref, isVisible]
 }
 
-// Hook para parallax
-function useParallax() {
-  const [offset, setOffset] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.pageYOffset)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  return offset
-}
 
 // Componente Header
 function Header() {
@@ -90,7 +76,7 @@ function Header() {
   return (
     <header className="nav">
       <a className="brand" href="#">
-        <img className="brandLogo" src="/img/logo-natasha.png" alt="Natasha Paczko" />
+        <img className="brandLogo" src="/img/logo.paczko.web.png" alt="Paczko Web" />
       </a>
 
       <nav className="menuDesktop" aria-label="Navegación principal">
@@ -182,57 +168,48 @@ function WorkCarousel() {
     </div>
   )
 }
-// Componente Hero - Fullscreen con animaciones
+// Componente Hero - Split layout profesional
 function Hero() {
   const [loaded, setLoaded] = useState(false)
-  const parallaxOffset = useParallax()
   const [contentRef, contentVisible] = useScrollAnimation(0.2)
 
   useEffect(() => {
-    // Activar animaciones después de montar
     const timer = setTimeout(() => setLoaded(true), 100)
     return () => clearTimeout(timer)
   }, [])
 
   return (
     <section className="hero" id="hero">
-      <div className="heroBanner">
-        <img 
-          className="heroBannerImg" 
-          src="/img/escritorio-rosa.avif" 
-          alt="" 
-          aria-hidden="true"
-        />
-        <div className="heroBannerOverlay"></div>
-        <div className={`heroBannerContent ${loaded ? 'animate-in' : ''}`}>
-          <span className="heroTag">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            Diseño Web Profesional
-          </span>
-          <h1 className="heroBannerTitle">
-            <span className="title-line">Diseño sitios web</span>
-            <span className="title-line title-highlight">simples y modernos</span>
-            <span className="title-line">para negocios chicos</span>
-          </h1>
-          <p className="heroSubtitle">
-            Transformo tu idea en una experiencia digital única
-          </p>
-          <div className="heroBannerActions">
-            <a href="#que-hago" className="scrollArrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-              </svg>
-            </a>
-            <a className="btn btnBanner btnPrimary" href="#mis-trabajos">
-              <span>Ver trabajos</span>
-            </a>
+      <div className={`heroSplit ${loaded ? 'animate-in' : ''}`}>
+        <div className="heroSplitLeft">
+          <div className="heroTextBox">
+            <span className="heroEyebrow">Natasha Paczko — Diseñadora web</span>
+            <h1 className="heroMainTitle">
+              <span className="titleLine titleLine--1">Diseño web que</span>
+              <span className="titleLine titleLine--2">impulsa tu marca</span>
+            </h1>
+            <p className="heroMainSubtitle">
+              Sitios modernos, UX/UI profesional y desarrollos a medida para negocios que quieren crecer.
+            </p>
+            <div className="heroBenefits">
+              <span className="heroBenefit"><span className="benefitCheck">✓</span> Diseño estratégico</span>
+              <span className="heroBenefit"><span className="benefitCheck">✓</span> 100% responsive</span>
+              <span className="heroBenefit"><span className="benefitCheck">✓</span> Entrega profesional</span>
+            </div>
+            <div className="heroButtons">
+              <a className="btnHeroPrimary" href="#mis-trabajos">Ver proyectos</a>
+              <a className="btnHeroSecondary" href="https://wa.me/5493786417162?text=Hola%2C%20quiero%20consultar%20por%20una%20web" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+            </div>
           </div>
+        </div>
+        <div className="heroSplitRight">
+          <img src="/img/foto.hero-removebg-preview.png" alt="Natasha Paczko - Diseñadora Web" className="heroPhoto" />
         </div>
       </div>
 
       <div className="heroContent" ref={contentRef}>
         <div className={`heroShowcase ${contentVisible ? 'animate-in' : ''}`}>
-          
+
           <div className="heroShowcaseHeader">
             <span className="heroShowcaseLabel">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -665,7 +642,7 @@ function Footer() {
       </nav>
 
       <div className="footerBrand">
-        <img className="footerLogo" src="/img/logo-natasha.png" alt="Natasha Paczko" />
+        <img className="footerLogo" src="/img/logo.paczko.web.png" alt="Paczko Web" />
       </div>
 
       <p className="footerCopy">
