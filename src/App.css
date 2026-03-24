@@ -1909,14 +1909,64 @@ img { display: block; max-width: 100%; }
   }
 }
 
-/* ====== RESPONSIVE — ULTRA SMALL MOBILE (≤320px) ====== */
-@media (max-width: 320px) {
+/* ====== RESPONSIVE — ULTRA SMALL MOBILE (≤250px) ====== */
+@media (max-width: 250px) {
+  .heroSplit {
+    grid-template-columns: 55% 45%;
+  }
+
+  .heroSplitLeft {
+    padding: 50px 6px 16px 10px;
+  }
+
+  .heroTextBox {
+    padding: 12px 8px;
+    border-radius: 12px;
+  }
+
+  .heroEyebrow {
+    font-size: 7px;
+    margin-bottom: 6px;
+  }
+
+  .heroMainTitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .heroMainSubtitle {
+    font-size: 9px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .heroButtons {
+    gap: 5px;
+  }
+
+  .btnHeroPrimary,
+  .btnHeroSecondary {
+    padding: 7px 4px;
+    font-size: 9px;
+    min-height: 30px;
+  }
+
+  .heroPhoto {
+    right: -35px !important;
+    top: 45px !important;
+    height: 88% !important;
+  }
+}
+
+/* ====== RESPONSIVE — ULTRA SMALL MOBILE (≤280px) ====== */
+@media (max-width: 280px) {
   .heroSplit {
     grid-template-columns: 50% 50%;
   }
 
   .heroSplitLeft {
-    padding: 60px 8px 20px 20px;
+    padding: 60px 8px 20px 12px;
   }
 
   .heroTextBox {
@@ -1952,7 +2002,7 @@ img { display: block; max-width: 100%; }
   }
 
   .heroPhoto {
-    right: -28px !important;
+    right: -45px !important;
     top: 50px !important;
     height: 90% !important;
   }
