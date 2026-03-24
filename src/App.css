@@ -14,46 +14,46 @@
   --surface:    #252022;
   --surface-alt:#2E2729;
 
-  /* --- BRAND — Silk Rose Mauve (desaturada) --- */
-  --pink:         #B87D92;   /* primary accent — muted rose */
-  --pink-dark:    #9E6A7D;   /* hover */
-  --pink-light:   #D4A0B5;   /* highlights */
+  /* --- BRAND — Silk Rose Mauve --- */
+  --pink:         #C2718F;   /* primary accent — unified with inline rgba(194,113,143) */
+  --pink-dark:    #A85B78;   /* hover */
+  --pink-light:   #E09AB8;   /* highlights */
   --blush:        #241D20;
-  --blush-medium: #D4A0B5;
+  --blush-medium: #E09AB8;
 
-  /* --- VIOLET ACCENT (desaturado) --- */
-  --violet:       #8E85B5;
-  --violet-light: #B5AECC;
+  /* --- VIOLET ACCENT --- */
+  --violet:       #9B7EC8;   /* unified with inline rgba(155,126,200) */
+  --violet-light: #BFB4DC;
 
   /* --- TEXT --- */
-  --text-primary: #F2ECEE;   /* cream — main headings */
-  --text-body:    #C0AEBA;   /* soft rose-grey body */
-  --text-muted:   #8A8088;   /* muted labels */
-  --text-light:   #F2ECEE;
+  --text-primary: #FAF5F7;   /* bright cream — main headings */
+  --text-body:    #CEBAC8;   /* rose-grey body — more readable */
+  --text-muted:   #9E8C98;   /* muted labels */
+  --text-light:   #FAF5F7;
 
   /* --- BORDERS --- */
-  --border:       rgba(184, 125, 146, 0.22);
-  --border-light: rgba(184, 125, 146, 0.11);
+  --border:       rgba(194, 113, 143, 0.32);
+  --border-light: rgba(194, 113, 143, 0.18);
 
   /* --- COMPATIBILITY ALIASES --- */
-  --gold:          #B87D92;
-  --gold-light:    #D4A0B5;
-  --gold-dark:     #9E6A7D;
+  --gold:          #C2718F;
+  --gold-light:    #E09AB8;
+  --gold-dark:     #A85B78;
   --dark:          #080608;
-  --rosa:          #B87D92;
-  --rosa-dark:     #9E6A7D;
-  --rosa-light:    #D4A0B5;
-  --blanco:        #F2ECEE;
+  --rosa:          #C2718F;
+  --rosa-dark:     #A85B78;
+  --rosa-light:    #E09AB8;
+  --blanco:        #FAF5F7;
   --crema:         #1A161A;
   --crema-oscura:  #201C20;
   --fondo-claro:   #141214;
-  --gris-border:   rgba(184, 125, 146, 0.18);
+  --gris-border:   rgba(194, 113, 143, 0.22);
   --gris-claro:    #1A161A;
-  --gris-oscuro:   #C0AEBA;
-  --texto-oscuro:  #F2ECEE;
-  --texto-secundario:        #C0AEBA;
-  --texto-secundario-fuerte: #E4D8DE;
-  --texto-principal:         #F2ECEE;
+  --gris-oscuro:   #CEBAC8;
+  --texto-oscuro:  #FAF5F7;
+  --texto-secundario:        #CEBAC8;
+  --texto-secundario-fuerte: #EAD8E4;
+  --texto-principal:         #FAF5F7;
 
   /* --- LAYOUT --- */
   --max:    1100px;
@@ -68,8 +68,8 @@
   --shadow-soft:   0 2px 16px rgba(0, 0, 0, 0.30);
   --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.38);
   --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.48);
-  --glow-rose:     0 0 40px rgba(184, 125, 146, 0.22);
-  --glow-violet:   0 0 40px rgba(142, 133, 181, 0.16);
+  --glow-rose:     0 0 40px rgba(194, 113, 143, 0.28);
+  --glow-violet:   0 0 40px rgba(155, 126, 200, 0.22);
 }
 
 /* ====== KEYFRAMES ====== */
@@ -948,24 +948,27 @@ img { display: block; max-width: 100%; }
 }
 
 .sectionRosa::before {
-  content: none;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 12, 18, 0.58);
+  pointer-events: none;
 }
 
-/* Tipografía legible sobre imagen sin overlay */
+/* Tipografía legible sobre imagen con overlay */
 .sectionRosa .container h2,
 .sectionRosa .diferencialContent h2 {
   color: #fff;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 
 .sectionRosa .sectionLead {
-  color: rgba(255,255,255,0.9);
-  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.88);
 }
 
 .sectionRosa .section-title-animated {
   color: #fff;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 
 .container {
@@ -980,9 +983,25 @@ img { display: block; max-width: 100%; }
 .diferencialContent h2 {
   font-family: 'DM Serif Display', Georgia, serif;
   font-size: clamp(30px, 3.2vw, 46px);
-  color: var(--text-primary);
+  color: #fff;
   margin: 0 0 12px;
   line-height: 1.1;
+}
+
+/* Títulos y lead en secciones con fondo de imagen */
+.sectionWhite .container h2,
+.sectionWhite .diferencialContent h2 {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.sectionWhite .section-title-animated {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.sectionWhite .sectionLead {
+  color: rgba(255,255,255,0.88);
 }
 
 /* Decorative line after h2 */
@@ -1022,14 +1041,14 @@ img { display: block; max-width: 100%; }
 
 .textBlock p {
   font-size: 15px;
-  color: var(--text-body);
+  color: #E2D4DC;
   margin: 0 0 16px;
 }
 
 .textBlock p:last-child { margin: 0; }
 
 .textBlock strong {
-  color: var(--text-primary);
+  color: #fff;
   font-weight: 600;
 }
 
@@ -1041,7 +1060,7 @@ img { display: block; max-width: 100%; }
 
 .bulletList li {
   font-size: 15px;
-  color: var(--text-body);
+  color: #E2D4DC;
   padding: 10px 0;
   border-bottom: 1px solid var(--border-light);
   display: flex;
@@ -1062,12 +1081,12 @@ img { display: block; max-width: 100%; }
 
 .highlight {
   display: inline-block;
-  background: rgba(194, 113, 143, 0.1);
-  border: 1px solid rgba(194, 113, 143, 0.25);
+  background: rgba(194, 113, 143, 0.18);
+  border: 1px solid rgba(194, 113, 143, 0.40);
   border-radius: 8px;
   padding: 12px 18px;
   font-size: 14px;
-  color: var(--pink-light);
+  color: #F0C0D8;
   font-weight: 500;
   margin-top: 8px;
 }
@@ -1114,7 +1133,7 @@ img { display: block; max-width: 100%; }
 .reasonCard:hover::before { opacity: 1; }
 
 .cardIcon {
-  color: var(--pink);
+  color: var(--pink-light);
   margin-bottom: 16px;
   display: flex;
 }
@@ -1124,23 +1143,24 @@ img { display: block; max-width: 100%; }
   top: 20px;
   right: 24px;
   font-family: 'DM Serif Display', serif;
-  font-size: 48px;
-  color: var(--pink);
-  opacity: 0.2;
+  font-size: 52px;
+  color: var(--pink-light);
+  opacity: 0.65;
   line-height: 1;
   user-select: none;
+  letter-spacing: -1px;
 }
 
 .reasonCard h3 {
   font-size: 17px;
   font-weight: 400;
-  color: var(--text-primary);
+  color: #fff;
   margin: 0 0 10px;
 }
 
 .reasonCard p {
   font-size: 14px;
-  color: var(--text-body);
+  color: #E2D4DC;
   margin: 0;
   line-height: 1.65;
 }
@@ -1228,11 +1248,11 @@ img { display: block; max-width: 100%; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--pink);
-  background: rgba(194, 113, 143, 0.1);
-  border: 1px solid rgba(194, 113, 143, 0.2);
+  color: #fff;
+  background: rgba(194, 113, 143, 0.35);
+  border: 1px solid rgba(194, 113, 143, 0.55);
   border-radius: 100px;
-  padding: 3px 10px;
+  padding: 4px 12px;
   margin-bottom: 12px;
 }
 
@@ -1242,13 +1262,13 @@ img { display: block; max-width: 100%; }
 
 .processCardTitle {
   font-size: 18px;
-  color: var(--text-primary);
+  color: #fff;
   margin: 0 0 10px;
 }
 
 .processCardText {
   font-size: 14px;
-  color: var(--text-body);
+  color: #E2D4DC;
   margin: 0;
   line-height: 1.65;
 }
@@ -1285,9 +1305,9 @@ img { display: block; max-width: 100%; }
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: rgba(194, 113, 143, 0.1);
-  border: 1px solid rgba(194, 113, 143, 0.25);
-  color: var(--pink);
+  background: rgba(194, 113, 143, 0.18);
+  border: 1px solid rgba(194, 113, 143, 0.40);
+  color: var(--pink-light);
   margin-bottom: 28px;
   animation: float 4s ease-in-out infinite;
 }
@@ -1327,14 +1347,14 @@ img { display: block; max-width: 100%; }
 }
 
 .audienceIcon {
-  color: var(--pink);
+  color: var(--pink-light);
   flex-shrink: 0;
   display: flex;
 }
 
 .audienceText {
   font-size: 15px;
-  color: var(--text-body);
+  color: #E2D4DC;
 }
 
 /* ====== MIS TRABAJOS ====== */
@@ -1396,7 +1416,7 @@ img { display: block; max-width: 100%; }
 
 .projectTitle {
   font-size: clamp(22px, 2.2vw, 30px);
-  color: var(--text-primary);
+  color: #fff;
   margin: 0 0 6px;
 }
 
@@ -1405,13 +1425,13 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--pink);
+  color: var(--pink-light);
   margin: 0 0 20px;
 }
 
 .projectDescription {
   font-size: 15px;
-  color: var(--text-body);
+  color: #E2D4DC;
   margin: 0 0 20px;
 }
 
@@ -1426,7 +1446,7 @@ img { display: block; max-width: 100%; }
 
 .projectFeatures li {
   font-size: 14px;
-  color: var(--text-body);
+  color: #E2D4DC;
   padding-left: 14px;
   position: relative;
   line-height: 1.5;
@@ -1444,18 +1464,19 @@ img { display: block; max-width: 100%; }
 }
 
 .projectFeatures strong {
-  color: var(--text-primary);
+  color: #fff;
   font-weight: 600;
 }
 
 .projectCta {
   font-size: 16px;
-  color: var(--text-primary);
+  color: #fff;
   text-align: center;
   font-style: italic;
   font-family: 'DM Serif Display', serif;
   margin: 0;
   padding: 24px 0 0;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
 }
 
 /* ====== CONTACT ====== */
@@ -1502,13 +1523,14 @@ img { display: block; max-width: 100%; }
 
 .contactBannerTitle {
   font-size: clamp(28px, 3vw, 46px);
-  color: var(--text-primary);
+  color: #fff;
   margin: 0 0 16px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 
 .contactBannerText {
   font-size: 16px;
-  color: rgba(245, 237, 240, 0.8);
+  color: rgba(255, 248, 252, 0.92);
   max-width: 520px;
   margin: 0 0 10px;
   line-height: 1.7;
@@ -1516,7 +1538,7 @@ img { display: block; max-width: 100%; }
 
 .contactBannerNote {
   font-size: 13px;
-  color: var(--pink-light);
+  color: #F0C0D8;
   margin: 0;
   font-weight: 500;
 }
@@ -1529,13 +1551,13 @@ img { display: block; max-width: 100%; }
 
 .formTitle {
   font-size: clamp(24px, 2.4vw, 34px);
-  color: var(--text-primary);
+  color: #FAF5F7;
   margin: 0 0 10px;
 }
 
 .formSubtitle {
   font-size: 15px;
-  color: var(--text-muted);
+  color: #BAAAB6;
   margin: 0 0 36px;
 }
 
@@ -1556,7 +1578,7 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #BAAAB6;
   margin-bottom: 8px;
   transition: color var(--transition-fast);
 }
@@ -1646,7 +1668,7 @@ img { display: block; max-width: 100%; }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #BAAAB6;
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -1667,7 +1689,7 @@ img { display: block; max-width: 100%; }
 
 .footerCopy {
   font-size: 12px;
-  color: var(--text-muted);
+  color: #BAAAB6;
   margin: 0;
   letter-spacing: 0.04em;
   position: relative;
