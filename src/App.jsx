@@ -1,6 +1,5 @@
-﻿import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-// Hook personalizado para animaciones al scroll - se activa cada vez que el elemento entra en vista
 function useScrollAnimation(threshold = 0.01) {
   const ref = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -8,66 +7,35 @@ function useScrollAnimation(threshold = 0.01) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Se activa cuando el elemento entra en vista
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-        // Se desactiva cuando sale completamente del viewport para permitir re-animación
-        if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
-          setIsVisible(false)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
+        if (!entry.isIntersecting && entry.boundingClientRect.top > 0) setIsVisible(false)
       },
-      { 
-        threshold: Math.min(threshold, 0.05),
-        rootMargin: '100px 0px' // Se activa 100px antes de entrar en vista
-      }
+      { threshold: Math.min(threshold, 0.05), rootMargin: '100px 0px' }
     )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
-      }
-    }
+    if (ref.current) observer.observe(ref.current)
+    return () => { if (ref.current) observer.unobserve(ref.current) }
   }, [threshold])
 
   return [ref, isVisible]
 }
 
-
-// Componente Header
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const toggleMenu = () => setMenuOpen(!menuOpen)
+  const closeMenu = () => setMenuOpen(false)
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
-
-  const closeMenu = () => {
-    setMenuOpen(false)
-  }
-
-  // Cerrar con Escape
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') closeMenu()
-    }
+    const handleEscape = (e) => { if (e.key === 'Escape') closeMenu() }
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [])
 
-  // Cerrar al hacer click afuera
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!menuOpen) return
       const menu = document.getElementById('menuMobile')
       const btn = document.getElementById('menuBtn')
-      if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-        closeMenu()
-      }
+      if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu()
     }
     document.addEventListener('click', handleClickOutside)
     return () => document.removeEventListener('click', handleClickOutside)
@@ -78,37 +46,25 @@ function Header() {
       <a className="brand" href="#">
         <img className="brandLogo" src="/img/logo.paczko.web.png" alt="Paczko Web" />
       </a>
-
       <nav className="menuDesktop" aria-label="Navegación principal">
-        <a href="#que-hago">Qué hago</a>
-        <a href="#por-que-web">Por qué web</a>
+        <a href="#servicios">Servicios</a>
         <a href="#como-trabajo">Cómo trabajo</a>
+        <a href="#mis-trabajos">Trabajos</a>
+        <a href="#faq">Preguntas</a>
       </nav>
-
-      <a className="btn cta desktopOnly" href="#contacto">contacto</a>
-
-      <button 
-        className="menuBtn" 
-        id="menuBtn" 
-        type="button" 
-        aria-label="Abrir menú" 
-        aria-expanded={menuOpen}
-        onClick={toggleMenu}
-      >
-        ☰
-      </button>
-
+      <a className="btn cta desktopOnly" href="#contacto">Consultar</a>
+      <button className="menuBtn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded={menuOpen} onClick={toggleMenu}>☰</button>
       <nav className={`menuMobile ${menuOpen ? 'open' : ''}`} id="menuMobile" aria-label="Menú móvil">
-        <a href="#que-hago" onClick={closeMenu}>Qué hago</a>
-        <a href="#por-que-web" onClick={closeMenu}>Por qué web</a>
+        <a href="#servicios" onClick={closeMenu}>Servicios</a>
         <a href="#como-trabajo" onClick={closeMenu}>Cómo trabajo</a>
+        <a href="#mis-trabajos" onClick={closeMenu}>Trabajos</a>
+        <a href="#faq" onClick={closeMenu}>Preguntas</a>
         <a href="#contacto" onClick={closeMenu}>Contacto</a>
       </nav>
     </header>
   )
 }
 
-// Componente Carrusel de trabajos - diseño moderno con múltiples imágenes visibles
 function WorkCarousel() {
   const images = [
     '/img/cuadrado-1.jpeg',
@@ -138,11 +94,7 @@ function WorkCarousel() {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <div className="carouselViewport">
-        <div 
-          className="carouselTrack" 
-          ref={trackRef}
-          style={{ transform: `translateX(-${current * 100}%)` }}
-        >
+        <div className="carouselTrack" ref={trackRef} style={{ transform: `translateX(-${current * 100}%)` }}>
           {images.map((img, i) => (
             <div className="carouselSlide" key={i}>
               <img src={img} alt={`Trabajo de diseño web ${i + 1}`} className="carouselImg" />
@@ -155,11 +107,7 @@ function WorkCarousel() {
       </button>
       <div className="carouselDots">
         {images.map((_, i) => (
-          <span
-            key={i}
-            className={`carouselDot ${i === current ? 'active' : ''}`}
-            onClick={() => goTo(i)}
-          />
+          <span key={i} className={`carouselDot ${i === current ? 'active' : ''}`} onClick={() => goTo(i)} />
         ))}
       </div>
       <div className="carouselProgress">
@@ -168,10 +116,9 @@ function WorkCarousel() {
     </div>
   )
 }
-// Componente Hero - Split layout profesional
+
 function Hero() {
   const [loaded, setLoaded] = useState(false)
-  const [contentRef, contentVisible] = useScrollAnimation(0.2)
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100)
@@ -180,144 +127,97 @@ function Hero() {
 
   return (
     <section className="hero" id="hero">
-      <div className={`heroSplit ${loaded ? 'animate-in' : ''}`}>
-        <div className="heroSplitLeft">
-          <div className="heroTextBox">
-            <span className="heroEyebrow">Natasha Paczko — Diseñadora web</span>
-            <h1 className="heroMainTitle">
-              <span className="titleLine titleLine--1">Diseño web que</span>
-              <span className="titleLine titleLine--2">impulsa tu marca</span>
-            </h1>
-            <p className="heroMainSubtitle">
-              Sitios modernos, UX/UI profesional y desarrollos a medida para negocios que quieren crecer.
-            </p>
-            <div className="heroBenefits">
-              <span className="heroBenefit"><span className="benefitCheck">✓</span> Diseño estratégico</span>
-              <span className="heroBenefit"><span className="benefitCheck">✓</span> 100% responsive</span>
-              <span className="heroBenefit"><span className="benefitCheck">✓</span> Entrega profesional</span>
-            </div>
-            <div className="heroButtons">
-              <a className="btnHeroPrimary" href="#mis-trabajos">Ver proyectos</a>
-              <a className="btnHeroSecondary" href="https://wa.me/5493786417162?text=Hola%2C%20quiero%20consultar%20por%20una%20web" target="_blank" rel="noopener">Contactame</a>
-            </div>
-          </div>
-        </div>
-        <div className="heroSplitRight">
-          <img src="/img/foto.hero-removebg-preview.png" alt="Natasha Paczko - Diseñadora Web" className="heroPhoto" />
-        </div>
-      </div>
-
-      <div className="heroContent" ref={contentRef}>
-        <div className={`heroShowcase ${contentVisible ? 'animate-in' : ''}`}>
-
-          <div className="heroShowcaseHeader">
-            <span className="heroShowcaseLabel">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              Mis trabajos
-            </span>
-          </div>
-
-          <WorkCarousel />
-
-          <div className={`heroMessageSection ${contentVisible ? 'animate-section' : ''}`}>
-            <blockquote className="heroQuote">
-              <div className="quoteIcon">"</div>
-              <p>Genero sitios web con impacto visual, que transmiten una experiencia interactiva para el que la visita.</p>
-            </blockquote>
-            <p className="heroDescription">
-              Te acompaño, te escucho y te explico todo sin tecnicismos, para que te sientas segura con tu web desde el primer día.
-            </p>
-            <div className="heroActions">
-              <a className="btn btnCta" href="https://wa.me/5493786417162?text=Hola%2C%20quiero%20consultar%20por%20una%20web" target="_blank" rel="noopener">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Quiero mi web
-              </a>
-            </div>
-          </div>
-
+      <div className={`heroCenter ${loaded ? 'animate-in' : ''}`}>
+        <span className="heroTag">Natasha Paczko · Diseño web</span>
+        <h1 className="heroTitle">
+          Páginas web claras<br />para tu negocio
+        </h1>
+        <p className="heroSubtitle">
+          Ayudo a emprendimientos, profesionales y negocios a tener una presencia online simple, ordenada y funcional. En esta página encontrás todo lo que necesitás saber antes de pedir tu web.
+        </p>
+        <ul className="heroChecks">
+          <li>Landing pages y webs informativas</li>
+          <li>Catálogos con carrito a WhatsApp</li>
+          <li>100% responsive para celular</li>
+        </ul>
+        <div className="heroButtons">
+          <a className="btnHeroPrimary" href="#servicios">¿Qué tipo de página necesito?</a>
+          <a className="btnHeroSecondary" href="https://wa.me/5493786417162?text=Hola%2C%20quiero%20consultar%20por%20mi%20p%C3%A1gina%20web" target="_blank" rel="noopener">Consultar por WhatsApp</a>
         </div>
       </div>
     </section>
   )
 }
 
-// Componente Qué Hago con animaciones
-function QueHago() {
-  const [ref, isVisible] = useScrollAnimation(0.2)
-  
-  return (
-    <section className="sectionRosa" id="que-hago" ref={ref}>
-      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <h2 className="section-title-animated">Qué hago</h2>
-        
-        <p className="sectionLead animate-fade-up delay-1">Diseño páginas web a medida para negocios que quieren verse profesionales sin complicarse.</p>
-        
-        <div className="textBlock animate-fade-up delay-2">
-          <p><strong>Puedo ayudarte si necesitás:</strong></p>
-          <ul className="bulletList animated-list">
-            <li className="list-item-animated">Una web simple para mostrar tu negocio</li>
-            <li className="list-item-animated">Una página clara para recibir consultas por WhatsApp</li>
-            <li className="list-item-animated">Presencia online para empezar a vender o crecer</li>
-          </ul>
-          <p className="highlight pulse-glow">Si no sabés qué tipo de web necesitás, lo vemos juntas.</p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Componente Por Qué Web con cards animadas
-function PorQueWeb() {
+function TiposDeWeb() {
   const [ref, isVisible] = useScrollAnimation(0.1)
-  
-  const reasons = [
+
+  const tipos = [
     {
-      number: 1,
-      title: "Tu espacio propio",
-      text: "Instagram depende de Meta. Si cambian el algoritmo o desaparece, tu presencia se va. Tu web es tuya para siempre.",
-      icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      numero: '01',
+      titulo: 'Landing Page simple',
+      descripcion: 'Ideal para mostrar un servicio, producto o emprendimiento de forma clara y directa. Incluye secciones como inicio, información del negocio, servicios, beneficios, ubicación y botón directo a WhatsApp.',
+      idealPara: 'Emprendimientos, servicios profesionales, estética, gastronomía, cursos, productos personalizados.',
+      incluye: ['Botón de WhatsApp', 'Diseño responsive', 'Información ordenada', 'Imágenes del negocio', 'Redes sociales y ubicación'],
+      link: null,
     },
     {
-      number: 2,
-      title: "Confianza profesional",
-      text: "Una web propia transmite profesionalismo. Tus clientes sienten que eres un negocio establecido, no solo alguien con Instagram.",
-      icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      numero: '02',
+      titulo: 'Landing Page con formulario',
+      descripcion: 'Además de mostrar la información del negocio, permite que el cliente complete un formulario. Esa información se envía por WhatsApp para facilitar el contacto.',
+      idealPara: 'Turnos, presupuestos, consultas, reservas o pedidos personalizados.',
+      incluye: ['Todo lo de la Landing simple', 'Formulario personalizado', 'Envío automático por WhatsApp', 'Campos a medida (fecha, producto, etc.)'],
+      link: 'https://web-barradeaccess.vercel.app',
     },
     {
-      number: 3,
-      title: "Contacto claro y directo",
-      text: "En tu web controlas cómo contactarte. Un formulario, WhatsApp directo, teléfono. No compites con el ruido de Instagram.",
-      icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      numero: '03',
+      titulo: 'Página web con varias secciones',
+      descripcion: 'Una página más completa para negocios que necesitan mostrar más información, varios servicios o diferentes categorías.',
+      idealPara: 'Negocios con muchos productos, marcas con más contenido, profesionales con varios servicios.',
+      incluye: ['Inicio, nosotros, servicios', 'Preguntas frecuentes', 'Testimonios', 'Contacto y ubicación', 'Formulario opcional'],
+      link: 'https://proyecto-mala-male.vercel.app',
     },
     {
-      number: 4,
-      title: "Google te encuentra",
-      text: "Tu web aparece en Google. Cuando alguien busca \"peluquería en [tu ciudad]\", te encuentra. Instagram no aparece en búsquedas.",
-      icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-    }
+      numero: '04',
+      titulo: 'Catálogo con carrito a WhatsApp',
+      descripcion: 'El cliente puede ver productos, elegir cantidades y armar un pedido. Al finalizar, el detalle completo del carrito se envía por WhatsApp para cerrar la venta.',
+      idealPara: 'Emprendimientos que venden productos y prefieren cerrar la compra por mensaje.',
+      incluye: ['Catálogo de productos', 'Carrito de compras', 'Pedido enviado por WhatsApp', 'Sin pago online (cierra por mensaje)'],
+      link: 'https://de-loi3-d.vercel.app/',
+    },
   ]
 
   return (
-    <section className="sectionWhite" id="por-que-web" ref={ref}>
+    <section className="sectionWhite" id="servicios" ref={ref}>
       <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <h2 className="section-title-animated">¿Por qué tener una web además de Instagram?</h2>
-        
-        <p className="sectionLead animate-fade-up delay-1">Instagram está bien, pero tu web es tu terreno propio. Aquí te explico por qué ambas se complementan.</p>
-        
-        <div className="reasonsGrid">
-          {reasons.map((reason, index) => (
-            <div 
-              className={`reasonCard card-3d ${isVisible ? 'card-visible' : ''}`} 
-              key={reason.number}
-              style={{ transitionDelay: `${index * 0.15}s` }}
-            >
-              <div className="cardIcon">{reason.icon}</div>
-              <span className="reasonNumber">{reason.number}</span>
-              <h3>{reason.title}</h3>
-              <p>{reason.text}</p>
-              <div className="cardShine"></div>
+        <h2 className="section-title-animated">¿Qué tipo de página necesitás?</h2>
+        <p className="sectionLead animate-fade-up delay-1">Antes de empezar, es importante entender qué opción se adapta mejor a tu negocio. Acá te explico cada una y podés ver un ejemplo real.</p>
+        <div className="tiposGrid">
+          {tipos.map((tipo, i) => (
+            <div className={`tipoCard card-3d ${isVisible ? 'card-visible' : ''}`} key={i} style={{ transitionDelay: `${i * 0.12}s` }}>
+              <span className="tipoNumero">{tipo.numero}</span>
+              <h3 className="tipoCardTitle">{tipo.titulo}</h3>
+              <p className="tipoCardDesc">{tipo.descripcion}</p>
+              <div className="tipoCardSection">
+                <span className="tipoLabel">Ideal para:</span>
+                <p className="tipoCardIdeal">{tipo.idealPara}</p>
+              </div>
+              <div className="tipoCardSection">
+                <span className="tipoLabel">Incluye:</span>
+                <ul className="tipoIncluye">
+                  {tipo.incluye.map((item, j) => <li key={j}>{item}</li>)}
+                </ul>
+              </div>
+              {tipo.link && (
+                <a className="tipoCardLink" href={tipo.link} target="_blank" rel="noopener noreferrer">
+                  Ver ejemplo en vivo
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              )}
             </div>
           ))}
         </div>
@@ -326,138 +226,114 @@ function PorQueWeb() {
   )
 }
 
-// Componente Process Card con animaciones
-function ProcessCard({ image, number, title, detail, imgClass, index, isVisible }) {
-  const [isHovered, setIsHovered] = useState(false)
+function TablaComparativa() {
+  const [ref, isVisible] = useScrollAnimation(0.1)
 
   return (
-    <div 
-      className={`processCard card-interactive ${isVisible ? 'card-visible' : ''}`}
-      style={{ transitionDelay: `${index * 0.2}s` }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="processCardImg">
-        <img className={imgClass} src={image} alt={title} />
-        <div className={`imageOverlay ${isHovered ? 'active' : ''}`}></div>
+    <section className="sectionRosa" id="comparacion" ref={ref}>
+      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
+        <h2 className="section-title-animated">Comparación de servicios</h2>
+        <p className="sectionLead animate-fade-up delay-1">Un resumen rápido para que puedas comparar las opciones.</p>
+        <div className="tablaWrap animate-fade-up delay-2">
+          <table className="comparacionTabla">
+            <thead>
+              <tr>
+                <th>Tipo de página</th>
+                <th>Sirve para</th>
+                <th>WhatsApp</th>
+                <th>Formulario</th>
+                <th>Carrito</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Landing simple</strong></td>
+                <td>Mostrar un servicio o producto</td>
+                <td className="tablaCheck">✓</td>
+                <td className="tablaDash">—</td>
+                <td className="tablaDash">—</td>
+              </tr>
+              <tr>
+                <td><strong>Landing con formulario</strong></td>
+                <td>Recibir consultas o turnos</td>
+                <td className="tablaCheck">✓</td>
+                <td className="tablaCheck">✓</td>
+                <td className="tablaDash">—</td>
+              </tr>
+              <tr>
+                <td><strong>Página con varias secciones</strong></td>
+                <td>Mostrar más información del negocio</td>
+                <td className="tablaCheck">✓</td>
+                <td className="tablaOpcional">Opcional</td>
+                <td className="tablaDash">—</td>
+              </tr>
+              <tr>
+                <td><strong>Catálogo con carrito</strong></td>
+                <td>Mostrar productos y recibir pedidos</td>
+                <td className="tablaCheck">✓</td>
+                <td className="tablaOpcional">Opcional</td>
+                <td className="tablaCheck">✓</td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="tablaNota">Todas las páginas se adaptan a celular, tablet y computadora.</p>
+        </div>
       </div>
-      <div className="processCardBody">
-        <span className={`processNumber ${isHovered ? 'pulse' : ''}`}>{number}</span>
-        <h3 className="processCardTitle">{title}</h3>
-        <p className="processCardText">{detail}</p>
-      </div>
-    </div>
+    </section>
   )
 }
 
-// Componente Cómo Trabajo con animaciones
 function ComoTrabajo() {
   const [ref, isVisible] = useScrollAnimation(0.1)
-  
-  const processes = [
+
+  const pasos = [
     {
-      image: "/img/charlamos1.jpg",
-      number: 1,
-      title: "Charlamos",
-      detail: "Definimos juntas qué querés comunicar, a quién y para qué."
+      numero: '01',
+      titulo: 'Primera consulta',
+      detalle: 'Hablamos sobre tu negocio, qué necesitás mostrar y qué tipo de página se adapta mejor a tu objetivo.',
     },
     {
-      image: "/img/diseño-web.jpg",
-      number: 2,
-      title: "Diseño tu web",
-      detail: "Maqueto tu sitio con un diseño moderno, simple y pensado para celular."
+      numero: '02',
+      titulo: 'Definición del tipo de página',
+      detalle: 'Te ayudo a elegir entre una landing simple, una página con formulario, una web con varias secciones o un catálogo con carrito.',
     },
     {
-      image: "/img/sitio-web.jpg",
-      number: 3,
-      title: "Publicamos y te acompaño",
-      detail: "Dejamos tu web online y te explico todo de forma clara. Si después necesitás ayuda, sigo cerca.",
-      imgClass: "imgCenter"
-    }
+      numero: '03',
+      titulo: 'Envío del material',
+      detalle: 'Para comenzar el diseño, necesito que me envíes la información necesaria: textos, fotos, logo, precios, redes y datos de contacto.',
+    },
+    {
+      numero: '04',
+      titulo: 'Diseño y desarrollo',
+      detalle: 'Con el material completo, comienzo a diseñar y construir tu página web.',
+    },
+    {
+      numero: '05',
+      titulo: 'Revisión y ajustes',
+      detalle: 'Te muestro la página para revisar textos, imágenes y detalles finales antes de publicar.',
+    },
+    {
+      numero: '06',
+      titulo: 'Entrega final',
+      detalle: 'Una vez aprobada, la página queda lista para compartir con tus clientes.',
+    },
   ]
 
   return (
-    <section className="sectionRosa" id="como-trabajo" ref={ref}>
+    <section className="sectionWhite" id="como-trabajo" ref={ref}>
       <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <h2 className="section-title-animated">Cómo trabajo</h2>
-        
-        <div className="processGrid">
-          {processes.map((process, index) => (
-            <ProcessCard
-              key={process.number}
-              image={process.image}
-              number={process.number}
-              title={process.title}
-              detail={process.detail}
-              imgClass={process.imgClass}
-              index={index}
-              isVisible={isVisible}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Componente Diferencial con animación
-function Diferencial() {
-  const [ref, isVisible] = useScrollAnimation(0.3)
-  
-  return (
-    <section className="sectionRosa sectionDiferencial" id="diferencial" ref={ref}>
-      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <div className="diferencialContent">
-          <span className="diferencialIcon animate-scale-in">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </span>
-          <h2 className="section-title-animated">Trabajo de forma personalizada y cercana</h2>
-          <p className="sectionLead animate-fade-up delay-1">No trabajo con soluciones genéricas ni trato automático. Cada proyecto es distinto y lo encaro de manera individual.</p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Componente Para Quién con animaciones
-function ParaQuien() {
-  const [ref, isVisible] = useScrollAnimation(0.2)
-  
-  const audiences = [
-    { 
-      text: "Emprendedores que recién empiezan", 
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-    },
-    { 
-      text: "Comercios chicos (peluquerías, estética, tiendas, etc.)", 
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    },
-    { 
-      text: "Personas que quieren una web clara y fácil de usar", 
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    },
-    { 
-      text: "Quienes valoran el trato humano y directo", 
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    }
-  ]
-
-  return (
-    <section className="sectionWhite" id="para-quien" ref={ref}>
-      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <h2 className="section-title-animated">¿Para quién es este servicio?</h2>
-        
-        <div className="audienceList">
-          {audiences.map((item, index) => (
-            <div 
-              className={`audienceItem audience-animated ${isVisible ? 'slide-in' : ''}`} 
-              key={index}
-              style={{ transitionDelay: `${index * 0.1}s` }}
+        <h2 className="section-title-animated">Cómo es el proceso de trabajo</h2>
+        <p className="sectionLead animate-fade-up delay-1">Trabajo de forma ordenada para que sepas exactamente en qué etapa estamos en todo momento.</p>
+        <div className="stepsGrid">
+          {pasos.map((paso, i) => (
+            <div
+              className={`stepItem card-3d ${isVisible ? 'card-visible' : ''}`}
+              key={i}
+              style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              <span className="audienceIcon">{item.icon}</span>
-              <span className="audienceText">{item.text}</span>
+              <span className="stepNumero">{paso.numero}</span>
+              <h3 className="stepTitulo">{paso.titulo}</h3>
+              <p className="stepDetalle">{paso.detalle}</p>
             </div>
           ))}
         </div>
@@ -466,67 +342,148 @@ function ParaQuien() {
   )
 }
 
-// Componente Trabajo Destacado con efectos
-function TrabajoDestacado() {
-  const [ref, isVisible] = useScrollAnimation(0.2)
-  const [imageLoaded, setImageLoaded] = useState(false)
+function MaterialNecesario() {
+  const [ref, isVisible] = useScrollAnimation(0.1)
+
+  const items = [
+    'Logo del negocio, si tiene',
+    'Nombre del emprendimiento o marca',
+    'Fotos de productos, local, trabajos o servicios',
+    'Textos o información que quiere mostrar',
+    'Precios, si la página incluye productos',
+    'Número de WhatsApp',
+    'Redes sociales',
+    'Dirección o ubicación, si corresponde',
+    'Colores o estilo de referencia, si tiene preferencia',
+    'Ejemplos de páginas que le gusten',
+  ]
 
   return (
-    <section className="sectionRosa" id="mis-trabajos" ref={ref}>
+    <section className="sectionRosa" id="material" ref={ref}>
       <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <h2 className="section-title-animated">Mis trabajos</h2>
-
-        <div className={`projectShowcase ${imageLoaded ? 'loaded' : ''}`}>
-          <div className="projectImage image-reveal">
-            <img 
-              src="/img/img1.jpg" 
-              alt="Proyecto - Web profesional" 
-              loading="lazy"
-              onLoad={() => setImageLoaded(true)}
-            />
-            <div className="projectImageOverlay">
-              <a className="btn btnProject" href="https://proyecto-mala-male.vercel.app" target="_blank" rel="noopener noreferrer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
-                </svg>
-                Ver proyecto
-              </a>
-            </div>
+        <h2 className="section-title-animated">Material necesario para comenzar</h2>
+        <p className="sectionLead animate-fade-up delay-1">Para poder avanzar con la página, el cliente debe enviar todo el material antes de iniciar el desarrollo.</p>
+        <div className="materialBox animate-fade-up delay-2">
+          <ul className="materialList">
+            {items.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+          <div className="materialAviso">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>El diseño y los tiempos de entrega dependen de que el material esté completo. Si faltan fotos, precios o información importante, el inicio del proyecto puede demorarse.</p>
           </div>
         </div>
-        
-        <div className="projectHighlight animate-fade-up delay-1">
-          <div className="projectInfo">
-            <h3 className="projectTitle">MalaMale Salon</h3>
-            <p className="projectType">Sitio web + E-commerce + Agenda de citas</p>
-            
-            <p className="projectDescription">Una peluquería que quería verse profesional online. Construimos una web con:</p>
-            
-            <ul className="projectFeatures features-animated">
-              <li><strong>Galería de trabajos</strong> - Muestra sus mejores transformaciones</li>
-              <li><strong>Tienda online</strong> - Vende productos de cuidado capilar</li>
-              <li><strong>Agenda de citas</strong> - Los clientes reservan directamente</li>
-              <li><strong>Contacto claro</strong> - WhatsApp, teléfono, formulario</li>
-              <li><strong>Diseño mobile-first</strong> - Se ve perfecto en celular</li>
-              <li><strong>Visible en Google</strong> - Aparece cuando buscan "peluquería"</li>
-            </ul>
-          </div>
-        </div>
-        
-        <p className="projectCta animate-fade-up delay-2">¿Ves el tipo de web que hago? Esto es lo que puedo hacer por tu negocio.</p>
       </div>
     </section>
   )
 }
 
-// Componente Contacto con animaciones
+function TiemposEntrega() {
+  const [ref, isVisible] = useScrollAnimation(0.1)
+
+  return (
+    <section className="sectionWhite" id="tiempos" ref={ref}>
+      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
+        <h2 className="section-title-animated">Tiempos de trabajo</h2>
+        <p className="sectionLead animate-fade-up delay-1">Para que podamos trabajar de forma ordenada y respetar los plazos acordados.</p>
+        <div className="tiemposGrid animate-fade-up delay-2">
+          <div className="tiempoCard">
+            <span className="tiempoIcono">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <h3>Tiempo estimado</h3>
+            <p>El tiempo estimado de realización de una página web es de aproximadamente <strong>2 semanas</strong>, contando desde el momento en que el cliente entrega todo el material necesario.</p>
+          </div>
+          <div className="tiempoCard tiempoCardAviso">
+            <span className="tiempoIcono">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </span>
+            <h3>Condición importante</h3>
+            <p>Para respetar los tiempos acordados, el cliente debe enviar fotos, textos, precios y datos principales dentro de las <strong>72 horas</strong> posteriores a la confirmación del proyecto.</p>
+          </div>
+          <div className="tiempoCard tiempoCardInfo">
+            <span className="tiempoIcono">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <h3>Reprogramación</h3>
+            <p>Si el material no se entrega dentro de ese plazo, la fecha de entrega podrá ser reprogramada, ya que no es posible avanzar correctamente sin la información necesaria.</p>
+          </div>
+        </div>
+        <div className="tiemposFrase animate-fade-up delay-3">
+          El plazo de entrega comienza a contar una vez recibido todo el material necesario para el desarrollo de la página: textos, imágenes, precios, logo y datos de contacto.
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+function PreguntasFrecuentes() {
+  const [ref, isVisible] = useScrollAnimation(0.1)
+  const [abierto, setAbierto] = useState(null)
+
+  const preguntas = [
+    {
+      pregunta: '¿La página tiene botón de WhatsApp?',
+      respuesta: 'Sí. Todas las páginas pueden incluir botón directo a WhatsApp para que los clientes te escriban fácilmente.',
+    },
+    {
+      pregunta: '¿El formulario llega a WhatsApp?',
+      respuesta: 'Sí. El formulario puede configurarse para que los datos del cliente se preparen y se envíen por WhatsApp automáticamente.',
+    },
+    {
+      pregunta: '¿El carrito tiene pago online?',
+      respuesta: 'No. El carrito funciona como un pedido por WhatsApp. El cliente selecciona productos y al finalizar se envía el detalle del pedido por mensaje. No incluye pasarela de pago.',
+    },
+    {
+      pregunta: '¿Tengo que enviar fotos?',
+      respuesta: 'Sí. Las fotos son necesarias para que la página se vea profesional y represente correctamente tu negocio. Sin fotos el diseño pierde calidad.',
+    },
+    {
+      pregunta: '¿Cuánto tarda la página?',
+      respuesta: 'El tiempo estimado es de 2 semanas desde que el cliente entrega todo el material completo: textos, imágenes, precios, logo y datos de contacto.',
+    },
+    {
+      pregunta: '¿Qué pasa si no tengo fotos?',
+      respuesta: 'Se puede avanzar con imágenes provisorias o de referencia, pero lo recomendable es contar con fotos reales del negocio, productos o servicios para un mejor resultado.',
+    },
+    {
+      pregunta: '¿No sé qué tipo de página necesito, me podés ayudar?',
+      respuesta: 'Sí. Si no sabés qué opción elegir, escribime por WhatsApp y charlamos sobre tu negocio para encontrar la opción más adecuada.',
+    },
+  ]
+
+  const toggle = (i) => setAbierto(abierto === i ? null : i)
+
+  return (
+    <section className="sectionWhite" id="faq" ref={ref}>
+      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
+        <h2 className="section-title-animated">Preguntas frecuentes</h2>
+        <p className="sectionLead animate-fade-up delay-1">Respuestas a las dudas más comunes antes de empezar.</p>
+        <div className="faqList animate-fade-up delay-2">
+          {preguntas.map((item, i) => (
+            <div className={`faqItem ${abierto === i ? 'faqItem--open' : ''}`} key={i}>
+              <button className="faqPregunta" onClick={() => toggle(i)} aria-expanded={abierto === i}>
+                <span>{item.pregunta}</span>
+                <svg className="faqIcono" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+              <div className="faqRespuesta">
+                <p>{item.respuesta}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Contacto() {
   const [ref, isVisible] = useScrollAnimation(0.2)
-  const [formData, setFormData] = useState({
-    nombre: '',
-    tipo: '',
-    mensaje: ''
-  })
+  const [formData, setFormData] = useState({ nombre: '', tipo: '', mensaje: '' })
   const [focusedField, setFocusedField] = useState(null)
 
   const handleChange = (e) => {
@@ -536,12 +493,10 @@ function Contacto() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
     const { nombre, tipo, mensaje } = formData
     const whatsappMessage = encodeURIComponent(
       `Hola! Soy ${nombre || 'Sin nombre'}.\n\nTipo de web: ${tipo || 'No especificado'}\n\nMensaje:\n${mensaje || 'Sin mensaje'}`
     )
-
     window.open(`https://wa.me/5493786417162?text=${whatsappMessage}`, '_blank')
   }
 
@@ -550,77 +505,51 @@ function Contacto() {
       <div className="contactBanner" style={{ backgroundImage: "url('/img/foto-banner-formu.png')" }}>
         <div className="contactBannerOverlay"></div>
         <div className={`contactBannerContent ${isVisible ? 'animate-in' : ''}`}>
-          <h2 className="contactBannerTitle">Contame tu idea</h2>
-          <p className="contactBannerText">No necesitás tener todo definido. Contame qué proyecto tenés en mente y vemos juntas qué tipo de web te conviene.</p>
-          <p className="contactBannerNote">Te respondo personalmente por WhatsApp.</p>
+          <h2 className="contactBannerTitle">¿No sabés qué tipo de página necesitás?</h2>
+          <p className="contactBannerText">Escribime por WhatsApp y te ayudo a elegir la opción más adecuada para tu negocio.</p>
+          <p className="contactBannerNote">Te respondo personalmente.</p>
         </div>
       </div>
 
       <div className="contactBody">
         <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-          <h3 className="formTitle">Escribime</h3>
-          <p className="formSubtitle">
-            Completá el formulario y te respondo por WhatsApp.
-          </p>
+          <h3 className="formTitle">Quiero consultar por mi página web</h3>
+          <p className="formSubtitle">Completá el formulario y te respondo por WhatsApp.</p>
           <form id="contactForm" className="form-animated" noValidate onSubmit={handleSubmit}>
             <div className="row">
               <div className={`field ${focusedField === 'nombre' ? 'focused' : ''} ${formData.nombre ? 'filled' : ''}`}>
                 <label htmlFor="nombre">Nombre</label>
-                <input 
-                  id="nombre" 
-                  type="text" 
-                  placeholder="Tu nombre" 
-                  autoComplete="name"
-                  value={formData.nombre}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('nombre')}
-                  onBlur={() => setFocusedField(null)}
-                />
+                <input id="nombre" type="text" placeholder="Tu nombre" autoComplete="name"
+                  value={formData.nombre} onChange={handleChange}
+                  onFocus={() => setFocusedField('nombre')} onBlur={() => setFocusedField(null)} />
                 <span className="fieldLine"></span>
               </div>
             </div>
-
             <div className="row">
               <div className={`field ${focusedField === 'tipo' ? 'focused' : ''} ${formData.tipo ? 'filled' : ''}`}>
                 <label htmlFor="tipo">¿Qué tipo de web necesitás?</label>
-                <input 
-                  id="tipo" 
-                  type="text" 
-                  placeholder="Landing / Web / Tienda"
-                  value={formData.tipo}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('tipo')}
-                  onBlur={() => setFocusedField(null)}
-                />
+                <input id="tipo" type="text" placeholder="Landing / Web con formulario / Catálogo / No sé"
+                  value={formData.tipo} onChange={handleChange}
+                  onFocus={() => setFocusedField('tipo')} onBlur={() => setFocusedField(null)} />
                 <span className="fieldLine"></span>
               </div>
             </div>
-
             <div className="row">
               <div className={`field ${focusedField === 'mensaje' ? 'focused' : ''} ${formData.mensaje ? 'filled' : ''}`}>
-                <label htmlFor="mensaje">Tu idea</label>
-                <textarea 
-                  id="mensaje" 
-                  placeholder="Cuéntame qué tenés en mente..."
-                  value={formData.mensaje}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('mensaje')}
-                  onBlur={() => setFocusedField(null)}
-                />
+                <label htmlFor="mensaje">Contame sobre tu negocio</label>
+                <textarea id="mensaje" placeholder="¿Qué vendés? ¿Qué querés mostrar en tu página?"
+                  value={formData.mensaje} onChange={handleChange}
+                  onFocus={() => setFocusedField('mensaje')} onBlur={() => setFocusedField(null)} />
                 <span className="fieldLine"></span>
               </div>
             </div>
-
             <button className="btn btnSubmit btn-ripple" type="submit">
-              <span>Quiero hablar sobre mi web</span>
+              <span>Quiero consultar por mi página web</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
               </svg>
             </button>
-
-            <div className="formNote">
-              * Al hacer click se abre WhatsApp con tu mensaje armado automáticamente.
-            </div>
+            <div className="formNote">* Al hacer click se abre WhatsApp con tu mensaje armado automáticamente.</div>
           </form>
         </div>
       </div>
@@ -628,43 +557,36 @@ function Contacto() {
   )
 }
 
-// Componente Footer
 function Footer() {
   const year = new Date().getFullYear()
-
   return (
     <footer className="siteFooter">
       <nav className="footerNav" aria-label="Footer navegación">
-        <a href="#que-hago">Qué hago</a>
-        <a href="#por-que-web">Por qué web</a>
+        <a href="#servicios">Servicios</a>
         <a href="#como-trabajo">Cómo trabajo</a>
+        <a href="#mis-trabajos">Trabajos</a>
+        <a href="#faq">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </nav>
-
       <div className="footerBrand">
         <img className="footerLogo" src="/img/logo.paczko.web.png" alt="Paczko Web" />
       </div>
-
-      <p className="footerCopy">
-        © {year} Natasha Paczko · Webs simples y modernas
-      </p>
+      <p className="footerCopy">© {year} Natasha Paczko · Páginas web para negocios</p>
     </footer>
   )
 }
 
-// Componente Principal App
 function App() {
   return (
     <>
       <Header />
       <main>
         <Hero />
-        <QueHago />
-        <PorQueWeb />
+        <TiposDeWeb />
         <ComoTrabajo />
-        <Diferencial />
-        <ParaQuien />
-        <TrabajoDestacado />
+        <MaterialNecesario />
+        <TiemposEntrega />
+        <PreguntasFrecuentes />
         <Contacto />
       </main>
       <Footer />
