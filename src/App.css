@@ -1664,18 +1664,20 @@ img { display: block; max-width: 100%; }
 }
 
 .tipoCard {
-  background: #fff;
-  border: 1px solid var(--border-light);
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 32px 28px;
   position: relative;
-  box-shadow: var(--shadow-soft);
-  transition: border-color var(--transition-medium), box-shadow var(--transition-medium), transform var(--transition-medium);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+  transition: box-shadow var(--transition-medium), transform var(--transition-medium), background var(--transition-medium);
 }
 
 .tipoCard:hover {
-  border-color: var(--border);
-  box-shadow: var(--glow-rose);
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(145deg, #D0D0D0 0%, #888 50%, #D0D0D0 100%) border-box;
+  box-shadow: var(--glow-rose), 0 6px 24px rgba(0, 0, 0, 0.10);
   transform: translateY(-4px);
 }
 
@@ -1683,8 +1685,7 @@ img { display: block; max-width: 100%; }
   display: inline-block;
   font-family: 'DM Serif Display', serif;
   font-size: 38px;
-  color: var(--pink-light);
-  opacity: 0.5;
+  color: var(--pink);
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -1854,50 +1855,81 @@ img { display: block; max-width: 100%; }
 }
 
 /* ====== COMO TRABAJO — 6 PASOS ====== */
-.stepsGrid {
+.procesoFlow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 16px;
+  gap: 20px;
+  margin-top: 24px;
 }
 
-.stepItem {
-  background: #fff;
-  border: 1px solid var(--border-light);
+.procesoStep {
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
+  border: 1px solid transparent;
   border-radius: var(--radius);
-  padding: 28px 24px;
-  box-shadow: var(--shadow-soft);
-  transition: border-color var(--transition-medium), box-shadow var(--transition-medium), transform var(--transition-medium);
+  padding: 28px 24px 24px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+  transition: box-shadow var(--transition-medium), transform var(--transition-medium), background var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.stepItem:hover {
-  border-color: var(--border);
-  box-shadow: var(--glow-rose);
+.procesoStep:hover {
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(145deg, #D0D0D0 0%, #888 50%, #D0D0D0 100%) border-box;
+  box-shadow: var(--glow-rose), 0 6px 24px rgba(0, 0, 0, 0.10);
   transform: translateY(-4px);
 }
 
-.stepNumero {
-  display: inline-block;
-  font-size: 11px;
+.procesoTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.procesoCirculo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(184, 116, 115, 0.10);
+  border: 1.5px solid rgba(184, 116, 115, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pink);
+  flex-shrink: 0;
+  transition: background var(--transition-medium), border-color var(--transition-medium);
+}
+
+.procesoStep:hover .procesoCirculo {
+  background: rgba(184, 116, 115, 0.18);
+  border-color: rgba(184, 116, 115, 0.50);
+}
+
+.procesoN {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--pink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color var(--transition-medium);
+}
+
+.procesoStep:hover .procesoN {
+  color: var(--pink-dark);
+}
+
+.procesoTitulo {
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #fff;
-  background: rgba(194, 113, 143, 0.35);
-  border: 1px solid rgba(194, 113, 143, 0.55);
-  border-radius: 100px;
-  padding: 4px 12px;
-  margin-bottom: 14px;
-}
-
-.stepTitulo {
-  font-size: 16px;
   color: var(--text-primary);
-  margin: 0 0 10px;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.stepDetalle {
-  font-size: 14px;
+.procesoDetalle {
+  font-size: 13.5px;
   color: var(--text-body);
   margin: 0;
   line-height: 1.65;
@@ -1905,12 +1937,13 @@ img { display: block; max-width: 100%; }
 
 /* ====== MATERIAL NECESARIO ====== */
 .materialBox {
-  background: #fff;
-  border: 1px solid var(--border-light);
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 32px 36px;
   max-width: 720px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
 }
 
 .materialList {
@@ -1973,21 +2006,22 @@ img { display: block; max-width: 100%; }
 }
 
 .tiempoCard {
-  background: #fff;
-  border: 1px solid var(--border-light);
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 28px 24px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
 }
 
 .tiempoCardAviso {
-  border-color: rgba(184, 116, 115, 0.3);
-  background: rgba(184, 116, 115, 0.05);
+  background: rgba(184, 116, 115, 0.05) padding-box,
+              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
 }
 
 .tiempoCardInfo {
-  border-color: rgba(0, 0, 0, 0.1);
-  background: #F9F9F9;
+  background: #F9F9F9 padding-box,
+              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
 }
 
 .tiempoIcono {
@@ -2273,7 +2307,7 @@ img { display: block; max-width: 100%; }
   .tiposGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .stepsGrid {
+  .procesoFlow {
     grid-template-columns: repeat(2, 1fr);
   }
   .tiemposGrid {
@@ -2291,7 +2325,7 @@ img { display: block; max-width: 100%; }
   .tiposGrid {
     grid-template-columns: 1fr;
   }
-  .stepsGrid {
+  .procesoFlow {
     grid-template-columns: 1fr;
   }
   .tiemposGrid {

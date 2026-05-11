@@ -288,52 +288,94 @@ function ComoTrabajo() {
 
   const pasos = [
     {
-      numero: '01',
-      titulo: 'Primera consulta',
-      detalle: 'Hablamos sobre tu negocio, qué necesitás mostrar y qué tipo de página se adapta mejor a tu objetivo.',
+      n: 1,
+      titulo: 'Hablamos',
+      detalle: 'Me contás sobre tu negocio y qué querés mostrar. Sin tecnicismos, sin presión.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      ),
     },
     {
-      numero: '02',
-      titulo: 'Definición del tipo de página',
-      detalle: 'Te ayudo a elegir entre una landing simple, una página con formulario, una web con varias secciones o un catálogo con carrito.',
+      n: 2,
+      titulo: 'Elegimos el tipo de página',
+      detalle: 'Te ayudo a entender qué opción encaja mejor con tu negocio y tu presupuesto.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      ),
     },
     {
-      numero: '03',
-      titulo: 'Envío del material',
-      detalle: 'Para comenzar el diseño, necesito que me envíes la información necesaria: textos, fotos, logo, precios, redes y datos de contacto.',
+      n: 3,
+      titulo: 'Me enviás el material',
+      detalle: 'Logo, fotos, textos, precios y datos de contacto. Todo lo que necesito para empezar.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+      ),
     },
     {
-      numero: '04',
+      n: 4,
       titulo: 'Diseño y desarrollo',
-      detalle: 'Con el material completo, comienzo a diseñar y construir tu página web.',
+      detalle: 'Armo tu página con todo el material. Acá es donde la magia sucede.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+      ),
     },
     {
-      numero: '05',
-      titulo: 'Revisión y ajustes',
-      detalle: 'Te muestro la página para revisar textos, imágenes y detalles finales antes de publicar.',
+      n: 5,
+      titulo: 'Revisás y ajustamos',
+      detalle: 'Te muestro el resultado. Si algo no te convence, lo ajustamos juntos.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      ),
     },
     {
-      numero: '06',
-      titulo: 'Entrega final',
-      detalle: 'Una vez aprobada, la página queda lista para compartir con tus clientes.',
+      n: 6,
+      titulo: '¡Tu página está lista!',
+      detalle: 'La publicamos y queda online para que tus clientes la vean desde el primer día.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      ),
     },
   ]
 
   return (
     <section className="sectionWhite" id="como-trabajo" ref={ref}>
       <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <h2 className="section-title-animated">Cómo es el proceso de trabajo</h2>
-        <p className="sectionLead animate-fade-up delay-1">Trabajo de forma ordenada para que sepas exactamente en qué etapa estamos en todo momento.</p>
-        <div className="stepsGrid">
+        <h2 className="section-title-animated">Cómo trabajamos juntos</h2>
+        <p className="sectionLead animate-fade-up delay-1">Un proceso simple, claro y sin sorpresas. Sabés en todo momento qué está pasando.</p>
+        <div className="procesoFlow">
           {pasos.map((paso, i) => (
             <div
-              className={`stepItem card-3d ${isVisible ? 'card-visible' : ''}`}
+              className={`procesoStep card-3d ${isVisible ? 'card-visible' : ''}`}
               key={i}
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              <span className="stepNumero">{paso.numero}</span>
-              <h3 className="stepTitulo">{paso.titulo}</h3>
-              <p className="stepDetalle">{paso.detalle}</p>
+              <div className="procesoTop">
+                <div className="procesoCirculo">
+                  {paso.icon}
+                </div>
+                <span className="procesoN">{paso.n}</span>
+              </div>
+              <h3 className="procesoTitulo">{paso.titulo}</h3>
+              <p className="procesoDetalle">{paso.detalle}</p>
             </div>
           ))}
         </div>
