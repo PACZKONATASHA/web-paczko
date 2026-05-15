@@ -44,7 +44,7 @@ function Header() {
   return (
     <header className="nav">
       <a className="brand" href="#">
-        <img className="brandLogo" src="/img/logo.paczko.web.png" alt="Paczko Web" />
+        <img className="brandLogo" src="/img/logo.png.png" alt="Paczko Web" />
       </a>
       <nav className="menuDesktop" aria-label="Navegación principal">
         <a href="#servicios">Servicios</a>
@@ -159,6 +159,7 @@ function TiposDeWeb() {
       descripcion: 'Ideal para mostrar un servicio, producto o emprendimiento de forma clara y directa. Incluye secciones como inicio, información del negocio, servicios, beneficios, ubicación y botón directo a WhatsApp.',
       idealPara: 'Emprendimientos, servicios profesionales, estética, gastronomía, cursos, productos personalizados.',
       incluye: ['Botón de WhatsApp', 'Diseño responsive', 'Información ordenada', 'Imágenes del negocio', 'Redes sociales y ubicación'],
+      imagen: null,
       link: null,
     },
     {
@@ -167,6 +168,7 @@ function TiposDeWeb() {
       descripcion: 'Además de mostrar la información del negocio, permite que el cliente complete un formulario. Esa información se envía por WhatsApp para facilitar el contacto.',
       idealPara: 'Turnos, presupuestos, consultas, reservas o pedidos personalizados.',
       incluye: ['Todo lo de la Landing simple', 'Formulario personalizado', 'Envío automático por WhatsApp', 'Campos a medida (fecha, producto, etc.)'],
+      imagen: '/img/landingpag-con-formu.png',
       link: 'https://web-barradeaccess.vercel.app',
     },
     {
@@ -175,6 +177,7 @@ function TiposDeWeb() {
       descripcion: 'Una página más completa para negocios que necesitan mostrar más información, varios servicios o diferentes categorías.',
       idealPara: 'Negocios con muchos productos, marcas con más contenido, profesionales con varios servicios.',
       incluye: ['Inicio, nosotros, servicios', 'Preguntas frecuentes', 'Testimonios', 'Contacto y ubicación', 'Formulario opcional'],
+      imagen: '/img/paginas-web-con-secciones.png',
       link: 'https://proyecto-mala-male.vercel.app',
     },
     {
@@ -183,6 +186,7 @@ function TiposDeWeb() {
       descripcion: 'El cliente puede ver productos, elegir cantidades y armar un pedido. Al finalizar, el detalle completo del carrito se envía por WhatsApp para cerrar la venta.',
       idealPara: 'Emprendimientos que venden productos y prefieren cerrar la compra por mensaje.',
       incluye: ['Catálogo de productos', 'Carrito de compras', 'Pedido enviado por WhatsApp', 'Sin pago online (cierra por mensaje)'],
+      imagen: '/img/catalogo-carrito-whatsaap.png',
       link: 'https://de-loi3-d.vercel.app/',
     },
   ]
@@ -208,6 +212,9 @@ function TiposDeWeb() {
                   {tipo.incluye.map((item, j) => <li key={j}>{item}</li>)}
                 </ul>
               </div>
+              {tipo.imagen && (
+                <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+              )}
               {tipo.link && (
                 <a className="tipoCardLink" href={tipo.link} target="_blank" rel="noopener noreferrer">
                   Ver ejemplo en vivo
@@ -490,11 +497,8 @@ function PreguntasFrecuentes() {
       pregunta: '¿Qué pasa si no tengo fotos?',
       respuesta: 'Se puede avanzar con imágenes provisorias o de referencia, pero lo recomendable es contar con fotos reales del negocio, productos o servicios para un mejor resultado.',
     },
-    {
-      pregunta: '¿No sé qué tipo de página necesito, me podés ayudar?',
-      respuesta: 'Sí. Si no sabés qué opción elegir, escribime por WhatsApp y charlamos sobre tu negocio para encontrar la opción más adecuada.',
-    },
   ]
+  
 
   const toggle = (i) => setAbierto(abierto === i ? null : i)
 
@@ -611,7 +615,7 @@ function Footer() {
         <a href="#contacto">Contacto</a>
       </nav>
       <div className="footerBrand">
-        <img className="footerLogo" src="/img/logo.paczko.web.png" alt="Paczko Web" />
+        <img className="footerLogo" src="/img/logo.png.png" alt="Paczko Web" />
       </div>
       <p className="footerCopy">© {year} Natasha Paczko · Páginas web para negocios</p>
     </footer>
