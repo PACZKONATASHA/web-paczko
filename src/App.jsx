@@ -626,6 +626,10 @@ function Contacto() {
             </button>
             <div className="formNote">* Al hacer click se abre WhatsApp con tu mensaje armado automáticamente.</div>
           </form>
+          <div className="contactFoto">
+            <img src="/img/foto-final.png" alt="Natasha Paczko, diseñadora web" className="contactFotoImg" />
+            <p className="contactFotoCaption">Soy Natasha · Te respondo personalmente cada consulta</p>
+          </div>
         </div>
       </div>
     </section>
