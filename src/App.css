@@ -839,7 +839,7 @@ img { display: block; max-width: 100%; }
 
 /* ====== SECTIONS ====== */
 .sectionWhite {
-  background: var(--bg-soft);
+  background: var(--blush);
   padding: 96px 40px;
 }
 
@@ -1428,6 +1428,83 @@ img { display: block; max-width: 100%; }
   font-weight: 500;
 }
 
+/* ====== COMO TRABAJAMOS BANNER ====== */
+.comoTrabajoBanner {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+}
+
+.comoTrabajoBannerBg {
+  grid-area: 1 / 1;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  max-height: 600px;
+  min-height: 320px;
+}
+
+.comoTrabajoBannerOverlay,
+.comoTrabajoBannerContent {
+  grid-area: 1 / 1;
+}
+
+.comoTrabajoBannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 26, 0.82) 0%,
+    rgba(184, 116, 115, 0.32) 100%
+  );
+}
+
+.comoTrabajoBannerContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 60px 40px;
+  align-self: center;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.comoTrabajoBannerContent.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.comoTrabajoBannerTitle {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(28px, 3vw, 46px);
+  color: #fff;
+  margin: 0 0 14px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.comoTrabajoBannerText {
+  font-size: 16px;
+  color: rgba(255, 248, 252, 0.90);
+  max-width: 520px;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.comoTrabajoBody {
+  background: var(--blush);
+  padding: 80px 40px;
+}
+
+@media (max-width: 768px) {
+  .comoTrabajoBannerBg { max-height: 420px; min-height: 220px; }
+  .comoTrabajoBannerContent { padding: 48px 20px; }
+  .comoTrabajoBody { padding: 56px 20px; }
+}
+
 .contactBody {
   background: #fff;
   border-top: 1px solid var(--border-light);
@@ -1668,10 +1745,15 @@ img { display: block; max-width: 100%; }
               linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
   border: 1px solid transparent;
   border-radius: var(--radius);
-  padding: 32px 28px;
+  padding: 0;
   position: relative;
+  overflow: hidden;
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
   transition: box-shadow var(--transition-medium), transform var(--transition-medium), background var(--transition-medium);
+}
+
+.tipoCardBody {
+  padding: 32px 28px 20px;
 }
 
 .tipoCard:hover {
@@ -1758,38 +1840,52 @@ img { display: block; max-width: 100%; }
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
-  margin-top: 20px;
   object-fit: cover;
+  border-top: 1px solid var(--border-light);
+}
+
+.tipoCardFooter {
+  padding: 16px 28px 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .tipoCardLink {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  background: var(--bg-soft);
-  border: 1.5px solid var(--border);
+  justify-content: center;
+  gap: 7px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--pink);
+  border: none;
   border-radius: 100px;
-  padding: 10px 20px;
+  padding: 10px 24px;
   text-decoration: none;
   transition: all var(--transition-fast);
-  align-self: flex-start;
+  box-shadow: 0 4px 18px rgba(184,116,115,0.40);
+  align-self: center;
+  width: fit-content;
 }
 
 .tipoCardLink:hover {
-  background: var(--text-primary);
-  border-color: var(--text-primary);
+  background: var(--pink-dark);
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 24px rgba(184,116,115,0.55);
 }
 
 .tipoCard {
   display: flex;
   flex-direction: column;
+}
+
+.tipoCardBody {
+  flex: 1;
 }
 
 /* ====== TABLA COMPARATIVA ====== */

@@ -199,31 +199,35 @@ function TiposDeWeb() {
         <div className="tiposGrid">
           {tipos.map((tipo, i) => (
             <div className={`tipoCard card-3d ${isVisible ? 'card-visible' : ''}`} key={i} style={{ transitionDelay: `${i * 0.12}s` }}>
-              <span className="tipoNumero">{tipo.numero}</span>
-              <h3 className="tipoCardTitle">{tipo.titulo}</h3>
-              <p className="tipoCardDesc">{tipo.descripcion}</p>
-              <div className="tipoCardSection">
-                <span className="tipoLabel">Ideal para:</span>
-                <p className="tipoCardIdeal">{tipo.idealPara}</p>
-              </div>
-              <div className="tipoCardSection">
-                <span className="tipoLabel">Incluye:</span>
-                <ul className="tipoIncluye">
-                  {tipo.incluye.map((item, j) => <li key={j}>{item}</li>)}
-                </ul>
+              <div className="tipoCardBody">
+                <span className="tipoNumero">{tipo.numero}</span>
+                <h3 className="tipoCardTitle">{tipo.titulo}</h3>
+                <p className="tipoCardDesc">{tipo.descripcion}</p>
+                <div className="tipoCardSection">
+                  <span className="tipoLabel">Ideal para:</span>
+                  <p className="tipoCardIdeal">{tipo.idealPara}</p>
+                </div>
+                <div className="tipoCardSection">
+                  <span className="tipoLabel">Incluye:</span>
+                  <ul className="tipoIncluye">
+                    {tipo.incluye.map((item, j) => <li key={j}>{item}</li>)}
+                  </ul>
+                </div>
               </div>
               {tipo.imagen && (
                 <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
               )}
               {tipo.link && (
-                <a className="tipoCardLink" href={tipo.link} target="_blank" rel="noopener noreferrer">
-                  Ver ejemplo en vivo
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                </a>
+                <div className="tipoCardFooter">
+                  <a className="tipoCardLink" href={tipo.link} target="_blank" rel="noopener noreferrer">
+                    Ver ejemplo en vivo
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                      <polyline points="15 3 21 3 21 9"/>
+                      <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                  </a>
+                </div>
               )}
             </div>
           ))}
@@ -287,6 +291,24 @@ function TablaComparativa() {
         </div>
       </div>
     </section>
+  )
+}
+
+function ComoTrabajoBanner() {
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 100)
+    return () => clearTimeout(t)
+  }, [])
+  return (
+    <div className="comoTrabajoBanner">
+      <img src="/img/foto.2.jpeg" alt="Natasha trabajando" className="comoTrabajoBannerBg" />
+      <div className="comoTrabajoBannerOverlay"></div>
+      <div className={`comoTrabajoBannerContent ${loaded ? 'animate-in' : ''}`}>
+        <h2 className="comoTrabajoBannerTitle">Cómo trabajamos juntos</h2>
+        <p className="comoTrabajoBannerText">Un proceso simple, claro y sin sorpresas. Sabés en todo momento qué está pasando.</p>
+      </div>
+    </div>
   )
 }
 
@@ -364,27 +386,28 @@ function ComoTrabajo() {
   ]
 
   return (
-    <section className="sectionWhite" id="como-trabajo" ref={ref}>
-      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-        <h2 className="section-title-animated">Cómo trabajamos juntos</h2>
-        <p className="sectionLead animate-fade-up delay-1">Un proceso simple, claro y sin sorpresas. Sabés en todo momento qué está pasando.</p>
-        <div className="procesoFlow">
-          {pasos.map((paso, i) => (
-            <div
-              className={`procesoStep card-3d ${isVisible ? 'card-visible' : ''}`}
-              key={i}
-              style={{ transitionDelay: `${i * 0.1}s` }}
-            >
-              <div className="procesoTop">
-                <div className="procesoCirculo">
-                  {paso.icon}
+    <section id="como-trabajo" ref={ref}>
+      <ComoTrabajoBanner />
+      <div className="comoTrabajoBody">
+        <div className={`container ${isVisible ? 'animate-section' : ''}`}>
+          <div className="procesoFlow">
+            {pasos.map((paso, i) => (
+              <div
+                className={`procesoStep card-3d ${isVisible ? 'card-visible' : ''}`}
+                key={i}
+                style={{ transitionDelay: `${i * 0.1}s` }}
+              >
+                <div className="procesoTop">
+                  <div className="procesoCirculo">
+                    {paso.icon}
+                  </div>
+                  <span className="procesoN">{paso.n}</span>
                 </div>
-                <span className="procesoN">{paso.n}</span>
+                <h3 className="procesoTitulo">{paso.titulo}</h3>
+                <p className="procesoDetalle">{paso.detalle}</p>
               </div>
-              <h3 className="procesoTitulo">{paso.titulo}</h3>
-              <p className="procesoDetalle">{paso.detalle}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
