@@ -215,7 +215,13 @@ function TiposDeWeb() {
                 </div>
               </div>
               {tipo.imagen && (
-                <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                tipo.link ? (
+                  <a href={tipo.link} target="_blank" rel="noopener noreferrer" className="tipoCardImgLink">
+                    <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                  </a>
+                ) : (
+                  <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                )
               )}
               {tipo.link && (
                 <div className="tipoCardFooter">
