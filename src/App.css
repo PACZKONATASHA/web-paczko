@@ -17,8 +17,8 @@
   --pink:         #B87473;   /* rosa viejo (color de marca) */
   --pink-dark:    #A06060;   /* hover */
   --pink-light:   #D4A0A0;   /* tono suave */
-  --blush:        #F2E8E8;
-  --blush-medium: #F2E8E8;
+  --blush:        #EDCFB8;
+  --blush-medium: #EDCFB8;
 
   /* --- SECONDARY --- */
   --violet:       #B87473;   /* mismo rosa viejo como acento secundario */
@@ -365,9 +365,9 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--bg-dark);
+  color: #8E5240;
   background: transparent;
-  border: 1.5px solid var(--pink);
+  border: 1.5px solid #B07860;
   padding: 9px 22px;
   border-radius: 100px;
   text-decoration: none;
@@ -375,7 +375,8 @@ img { display: block; max-width: 100%; }
 }
 
 .nav .btn.cta:hover {
-  background: var(--pink);
+  background: linear-gradient(135deg, #C49070 0%, #8E5240 38%, #B07860 68%, #C8947A 100%);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -537,19 +538,19 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   letter-spacing: 0.04em;
   color: #fff;
-  background: var(--pink);
+  background: linear-gradient(135deg, #C49070 0%, #8E5240 38%, #B07860 68%, #C8947A 100%);
   border: none;
   padding: 14px 30px;
   border-radius: 100px;
   text-decoration: none;
   transition: all var(--transition-fast);
-  box-shadow: 0 4px 20px rgba(201, 161, 160, 0.35);
+  box-shadow: 0 4px 20px rgba(142, 82, 64, 0.40);
 }
 
 .btnHeroPrimary:hover {
   transform: translateY(-2px);
-  background: var(--pink-dark);
-  box-shadow: 0 8px 28px rgba(201, 161, 160, 0.45);
+  background: linear-gradient(135deg, #D4A080 0%, #9C6050 38%, #C08870 68%, #D8A888 100%);
+  box-shadow: 0 8px 28px rgba(142, 82, 64, 0.55);
   color: #fff;
 }
 
@@ -828,18 +829,18 @@ img { display: block; max-width: 100%; }
   width: 100%;
   justify-content: center;
   color: #fff;
-  background: var(--pink);
+  background: linear-gradient(135deg, #C49070 0%, #8E5240 38%, #B07860 68%, #C8947A 100%);
   padding: 16px 32px;
   font-size: 14px;
-  box-shadow: 0 4px 20px rgba(201, 161, 160, 0.3);
+  box-shadow: 0 4px 20px rgba(142, 82, 64, 0.40);
   position: relative;
   overflow: hidden;
 }
 
 .btnSubmit:hover {
   transform: translateY(-2px);
-  background: var(--pink-dark);
-  box-shadow: 0 8px 28px rgba(201, 161, 160, 0.45);
+  background: linear-gradient(135deg, #D4A080 0%, #9C6050 38%, #C08870 68%, #D8A888 100%);
+  box-shadow: 0 8px 28px rgba(142, 82, 64, 0.55);
   color: #fff;
 }
 
@@ -858,7 +859,7 @@ img { display: block; max-width: 100%; }
 
 /* ====== SECTIONS ====== */
 .sectionWhite {
-  background: var(--blush);
+  background: #F5E4DC;
   padding: 96px 40px;
 }
 
@@ -1514,7 +1515,7 @@ img { display: block; max-width: 100%; }
 }
 
 .comoTrabajoBody {
-  background: var(--blush);
+  background: #F5E4DC;
   padding: 80px 40px;
 }
 
@@ -1593,14 +1594,14 @@ img { display: block; max-width: 100%; }
 
 .field.focused label,
 .field.filled label {
-  color: var(--pink);
+  color: #8E5240;
 }
 
 .field input,
 .field textarea {
   width: 100%;
   background: var(--bg-soft);
-  border: 1px solid var(--border-light);
+  border: 1.5px solid #C49070;
   border-radius: 10px;
   padding: 14px 18px;
   font-family: 'Manrope', sans-serif;
@@ -1623,8 +1624,8 @@ img { display: block; max-width: 100%; }
 
 .field.focused input,
 .field.focused textarea {
-  border-color: var(--pink);
-  box-shadow: 0 0 0 3px rgba(184, 116, 115, 0.12);
+  border-color: #B07860;
+  box-shadow: 0 0 0 3px rgba(176, 120, 96, 0.18);
 }
 
 .field input:hover,
@@ -1918,22 +1919,22 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #fff;
-  background: var(--pink);
+  background: linear-gradient(135deg, #C49070 0%, #8E5240 38%, #B07860 68%, #C8947A 100%);
   border: none;
   border-radius: 100px;
   padding: 10px 24px;
   text-decoration: none;
   transition: all var(--transition-fast);
-  box-shadow: 0 4px 18px rgba(184,116,115,0.40);
+  box-shadow: 0 4px 18px rgba(142, 82, 64, 0.40);
   align-self: center;
   width: fit-content;
 }
 
 .tipoCardLink:hover {
-  background: var(--pink-dark);
+  background: linear-gradient(135deg, #D4A080 0%, #9C6050 38%, #C08870 68%, #D8A888 100%);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 7px 24px rgba(184,116,115,0.55);
+  box-shadow: 0 7px 24px rgba(142, 82, 64, 0.55);
 }
 
 .tipoCard {
@@ -2125,12 +2126,12 @@ img { display: block; max-width: 100%; }
   align-items: flex-start;
   gap: 10px;
   padding: 6px 0;
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid #C49070;
 }
 
 .materialList li::before {
   content: '✓';
-  color: var(--pink);
+  color: #8E5240;
   font-weight: 700;
   flex-shrink: 0;
   margin-top: 1px;
