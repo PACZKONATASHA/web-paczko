@@ -316,7 +316,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 40px;
   padding: 0 60px;
-  height: 72px;
+  height: 84px;
   background: rgba(142, 82, 64, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -330,9 +330,8 @@ img { display: block; max-width: 100%; }
 }
 
 .brandLogo {
-  height: 48px;
+  height: 68px;
   width: auto;
-  mix-blend-mode: multiply;
   opacity: 1;
 }
 
@@ -395,7 +394,7 @@ img { display: block; max-width: 100%; }
   display: none;
   flex-direction: column;
   position: fixed;
-  top: 72px; left: 0; right: 0;
+  top: 84px; left: 0; right: 0;
   background: rgba(142, 82, 64, 0.98);
   backdrop-filter: blur(24px);
   padding: 0;
@@ -1686,7 +1685,6 @@ img { display: block; max-width: 100%; }
 .footerLogo {
   height: 40px;
   width: auto;
-  mix-blend-mode: multiply;
   opacity: 0.9;
 }
 

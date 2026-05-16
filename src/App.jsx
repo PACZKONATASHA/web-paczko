@@ -44,7 +44,7 @@ function Header() {
   return (
     <header className="nav">
       <a className="brand" href="#">
-        <img className="brandLogo" src="/img/logo.png.png" alt="Paczko Web" />
+        <img className="brandLogo" src="/img/logo.blanco.png" alt="Paczko Web" />
       </a>
       <nav className="menuDesktop" aria-label="Navegación principal">
         <a href="#servicios">Servicios</a>
@@ -648,7 +648,7 @@ function Footer() {
         <a href="#contacto">Contacto</a>
       </nav>
       <div className="footerBrand">
-        <img className="footerLogo" src="/img/logo.png.png" alt="Paczko Web" />
+        <img className="footerLogo" src="/img/logo.blanco.png" alt="Paczko Web" />
       </div>
       <p className="footerCopy">© {year} Natasha Paczko · Páginas web para negocios</p>
     </footer>
