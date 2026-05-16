@@ -1646,12 +1646,12 @@ img { display: block; max-width: 100%; }
 /* ====== FOOTER ====== */
 .siteFooter {
   background: #8E5240;
-  padding: 48px 60px;
+  padding: 24px 60px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 12px;
   position: relative;
 }
 
@@ -1723,9 +1723,9 @@ img { display: block; max-width: 100%; }
 
 /* ====== RESPONSIVE — MOBILE (≤600px) ====== */
 @media (max-width: 600px) {
-  .nav { padding: 0 16px; height: 96px; }
+  .nav { padding: 0 16px; height: 88px; }
   .brandLogo { height: 80px; }
-  .menuMobile { top: 96px; }
+  .menuMobile { top: 88px; }
 
   .heroCenter {
     padding: 100px 24px 64px;
