@@ -1461,9 +1461,9 @@ img { display: block; max-width: 100%; }
   width: 100%;
   display: block;
   object-fit: cover;
-  object-position: center top;
-  max-height: 580px;
-  min-height: 520px;
+  object-position: 65% 20%;
+  max-height: 700px;
+  min-height: 620px;
 }
 
 .comoTrabajoBannerOverlay,
