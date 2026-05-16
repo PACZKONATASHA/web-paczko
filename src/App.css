@@ -2107,9 +2107,8 @@ img { display: block; max-width: 100%; }
 
 /* ====== MATERIAL NECESARIO ====== */
 .materialBox {
-  background: linear-gradient(#fff, #fff) padding-box,
-              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
-  border: 1px solid transparent;
+  background: #fff;
+  border: 1px solid var(--border-light);
   border-radius: var(--radius);
   padding: 32px 36px;
   max-width: 720px;
@@ -2521,4 +2520,32 @@ img { display: block; max-width: 100%; }
   .comparacionTabla td {
     padding: 12px 14px;
   }
+}
+
+/* ====== DESKTOP LARGE (≥901px) — texto más grande ====== */
+@media (min-width: 901px) {
+  .tipoCardDesc   { font-size: 16px; }
+  .tipoCardIdeal  { font-size: 15px; }
+  .tipoIncluye li { font-size: 15px; }
+
+  .procesoDetalle { font-size: 16px; }
+  .procesoTitulo  { font-size: 18px; }
+
+  .tiempoCard h3  { font-size: 19px; }
+  .tiempoCard p   { font-size: 16px; }
+  .tiemposFrase   { font-size: 16px; }
+
+  .materialList li   { font-size: 16px; }
+  .materialAviso p   { font-size: 15px; }
+
+  .faqRespuesta p    { font-size: 16px; }
+  .faqPregunta       { font-size: 17px; }
+
+  .comparacionTabla td  { font-size: 16px; }
+  .comparacionTabla th  { font-size: 13px; }
+  .tablaNota            { font-size: 15px; }
+
+  .contactBannerText { font-size: 20px; }
+  .formTitle         { font-size: 36px; }
+  .formSubtitle      { font-size: 17px; }
 }
