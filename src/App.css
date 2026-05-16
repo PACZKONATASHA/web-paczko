@@ -1893,9 +1893,10 @@ img { display: block; max-width: 100%; }
 
 .tipoCardImg {
   width: 100%;
-  height: auto;
+  height: 240px;
   display: block;
   object-fit: cover;
+  object-position: top;
   border-top: 1px solid var(--border-light);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -2491,6 +2492,10 @@ img { display: block; max-width: 100%; }
 @media (max-width: 600px) {
   .tiposGrid {
     grid-template-columns: 1fr;
+  }
+
+  .tipoCardImg {
+    height: 200px;
   }
   .procesoFlow {
     grid-template-columns: 1fr;
