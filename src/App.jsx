@@ -582,7 +582,6 @@ function Contacto() {
         <div className={`contactBannerContent ${isVisible ? 'animate-in' : ''}`}>
           <h2 className="contactBannerTitle">¿No sabés qué tipo de página necesitás?</h2>
           <p className="contactBannerText">Escribime por WhatsApp y te ayudo a elegir la opción más adecuada para tu negocio.</p>
-          <p className="contactBannerNote">Te respondo personalmente.</p>
         </div>
       </div>
 

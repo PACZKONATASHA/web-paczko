@@ -1392,22 +1392,18 @@ img { display: block; max-width: 100%; }
 
 .contactBanner {
   position: relative;
-  min-height: 340px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   background-size: cover;
-  background-position: center;
+  background-position: center 55%;
   overflow: hidden;
 }
 
 .contactBannerOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(26, 26, 26, 0.88) 0%,
-    rgba(184, 116, 115, 0.35) 100%
-  );
+  background: rgba(20, 10, 8, 0.42);
 }
 
 .contactBannerContent {
