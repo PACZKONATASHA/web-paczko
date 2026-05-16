@@ -332,7 +332,7 @@ img { display: block; max-width: 100%; }
 .brandLogo {
   height: 48px;
   width: auto;
-  filter: brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+  mix-blend-mode: multiply;
   opacity: 1;
 }
 
@@ -561,9 +561,9 @@ img { display: block; max-width: 100%; }
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--text-primary);
+  color: rgba(255, 255, 255, 0.92);
   background: transparent;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
   padding: 14px 30px;
   border-radius: 100px;
   text-decoration: none;
@@ -571,8 +571,9 @@ img { display: block; max-width: 100%; }
 }
 
 .btnHeroSecondary:hover {
-  border-color: var(--pink);
-  color: var(--pink);
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ====== HERO CAROUSEL SECTION ====== */
@@ -1684,8 +1685,8 @@ img { display: block; max-width: 100%; }
 .footerLogo {
   height: 40px;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
 }
 
 .footerCopy {
@@ -1993,7 +1994,7 @@ img { display: block; max-width: 100%; }
 }
 
 .comparacionTabla td strong {
-  color: #fff;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
