@@ -316,7 +316,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 40px;
   padding: 0 60px;
-  height: 176px;
+  height: 100px;
   background: rgba(142, 82, 64, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -1683,7 +1683,7 @@ img { display: block; max-width: 100%; }
 }
 
 .footerLogo {
-  height: 40px;
+  height: 160px;
   width: auto;
   opacity: 0.9;
 }
@@ -2523,6 +2523,7 @@ img { display: block; max-width: 100%; }
 
 /* ====== DESKTOP LARGE (≥901px) — texto más grande ====== */
 @media (min-width: 901px) {
+  .tipoCardImg { height: 340px; }
   .tipoCardDesc   { font-size: 16px; }
   .tipoCardIdeal  { font-size: 15px; }
   .tipoIncluye li { font-size: 15px; }
