@@ -1462,8 +1462,8 @@ img { display: block; max-width: 100%; }
   display: block;
   object-fit: cover;
   object-position: center top;
-  max-height: 600px;
-  min-height: 320px;
+  max-height: 580px;
+  min-height: 520px;
 }
 
 .comoTrabajoBannerOverlay,
@@ -1475,9 +1475,10 @@ img { display: block; max-width: 100%; }
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    135deg,
-    rgba(26, 26, 26, 0.82) 0%,
-    rgba(184, 116, 115, 0.32) 100%
+    to right,
+    rgba(20, 10, 8, 0.78) 0%,
+    rgba(20, 10, 8, 0.45) 55%,
+    rgba(20, 10, 8, 0.20) 100%
   );
 }
 
@@ -1487,7 +1488,7 @@ img { display: block; max-width: 100%; }
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 80px 60px;
   align-self: center;
   opacity: 0;
   transform: translateY(24px);
