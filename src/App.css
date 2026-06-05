@@ -628,13 +628,16 @@ img { display: block; max-width: 100%; }
     max-width: 100%;
     gap: 18px;
     flex: 1;
-    margin-top: -60px;
+    margin-top: -115px;
     position: relative;
     z-index: 2;
   }
 
   .heroLabel {
-    color: var(--rosa);
+    background: linear-gradient(120deg, #9B1A6E 0%, #E0329A 35%, #FF6EC7 60%, #C2185B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .heroTitle {
@@ -659,7 +662,7 @@ img { display: block; max-width: 100%; }
   .heroContent {
     padding: 24px 20px 44px;
     gap: 16px;
-    margin-top: -60px;
+    margin-top: -115px;
   }
 
   .heroTitle {
