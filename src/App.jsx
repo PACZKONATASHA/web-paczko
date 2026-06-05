@@ -627,8 +627,10 @@ function Contacto() {
 
   return (
     <section className="contactSection" id="contacto" ref={ref}>
-      <div className="contactBanner" style={{ backgroundImage: "url('/img/foto-banner-formu.png')" }}>
-        <div className="contactBannerOverlay"></div>
+      <div className="contactBanner">
+        <div className="contactBannerImg">
+          <img src="/img/foto-banner-formu.png" alt="" />
+        </div>
         <div className={`contactBannerContent ${isVisible ? 'animate-in' : ''}`}>
           <h2 className="contactBannerTitle">¿No sabés qué tipo de página necesitás?</h2>
           <p className="contactBannerText">Escribime por WhatsApp y te ayudo a elegir la opción más adecuada para tu negocio.</p>
