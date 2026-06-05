@@ -840,6 +840,7 @@ img { display: block; max-width: 100%; }
   border-radius: 100px;
   padding: 13px 26px;
   transition: all var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(184, 172, 175, 0.35);
 }
 
 .btnCta {
@@ -860,12 +861,14 @@ img { display: block; max-width: 100%; }
   color: var(--text-primary);
   border: 1px solid var(--border);
   backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(184, 172, 175, 0.35);
 }
 
 .btnProject:hover {
   background: #D5B3B7;
   border-color: #D5B3B7;
   color: #fff;
+  box-shadow: 0 8px 28px rgba(213, 179, 183, 0.50);
 }
 
 .btnSubmit {
