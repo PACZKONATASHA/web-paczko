@@ -628,7 +628,7 @@ img { display: block; max-width: 100%; }
     max-width: 100%;
     gap: 18px;
     flex: 1;
-    margin-top: -115px;
+    margin-top: -150px;
     position: relative;
     z-index: 2;
   }
@@ -662,7 +662,7 @@ img { display: block; max-width: 100%; }
   .heroContent {
     padding: 24px 20px 44px;
     gap: 16px;
-    margin-top: -115px;
+    margin-top: -150px;
   }
 
   .heroTitle {
