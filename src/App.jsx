@@ -221,24 +221,13 @@ function TiposDeWeb() {
               key={i}
               style={{ transitionDelay: `${i * 0.12}s` }}
             >
-              {/* Columna imagen */}
-              <div className="tipoCardImgCol">
-                {tipo.imagen ? (
-                  tipo.link
-                    ? <a href={tipo.link} target="_blank" rel="noopener noreferrer" className="tipoCardImgLink">
-                        <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
-                      </a>
-                    : <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
-                ) : (
-                  <div className="tipoCardImgPlaceholder">
-                    <span className="tipoNumeroBig">{tipo.numero}</span>
-                  </div>
-                )}
+              {/* Número — fila completa arriba */}
+              <div className="tipoCardNumHeader">
+                <span className="tipoNumero">{tipo.numero}</span>
               </div>
 
               {/* Columna texto + botón */}
               <div className="tipoCardBody">
-                <span className="tipoNumero">{tipo.numero}</span>
                 <h3 className="tipoCardTitle">{tipo.titulo}</h3>
                 <p className="tipoCardDesc">{tipo.descripcion}</p>
                 <div className="tipoCardSection">
@@ -260,6 +249,21 @@ function TiposDeWeb() {
                       <line x1="10" y1="14" x2="21" y2="3"/>
                     </svg>
                   </a>
+                )}
+              </div>
+
+              {/* Columna imagen */}
+              <div className="tipoCardImgCol">
+                {tipo.imagen ? (
+                  tipo.link
+                    ? <a href={tipo.link} target="_blank" rel="noopener noreferrer" className="tipoCardImgLink">
+                        <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                      </a>
+                    : <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                ) : (
+                  <div className="tipoCardImgPlaceholder">
+                    <span className="tipoNumeroBig">{tipo.numero}</span>
+                  </div>
                 )}
               </div>
             </div>
@@ -369,31 +373,53 @@ function ComoTrabajo() {
     const tl   = tlRef.current
     if (!ball || !tl) return
 
+    const isMobile = window.innerWidth <= 768
     const tlRect = tl.getBoundingClientRect()
-    const positions = dotRefs.current.map(d => {
-      if (!d) return 0
-      const r = d.getBoundingClientRect()
-      return r.left + r.width / 2 - tlRect.left
-    })
 
-    // Coloca la pelota en el paso 1 sin transición
-    ball.style.transition = 'none'
-    ball.style.left = `${positions[0]}px`
-    ball.style.opacity = '1'
+    if (isMobile) {
+      // Timeline vertical: mueve la pelota por top
+      const positions = dotRefs.current.map(d => {
+        if (!d) return 0
+        const r = d.getBoundingClientRect()
+        return r.top + r.height / 2 - tlRect.top
+      })
+      ball.style.transition = 'none'
+      ball.style.left = '24px'
+      ball.style.top = `${positions[0]}px`
+      ball.style.opacity = '1'
 
-    let i = 1
-    const step = () => {
-      if (i >= positions.length) return
-      // Activa transición y mueve al siguiente punto
-      ball.style.transition = 'left 1.1s cubic-bezier(0.4, 0, 0.2, 1)'
-      ball.style.left = `${positions[i]}px`
-      i++
-      setTimeout(step, 1800)   // 1100ms viaje + 700ms pausa en cada punto
+      let i = 1
+      const step = () => {
+        if (i >= positions.length) return
+        ball.style.transition = 'top 1.1s cubic-bezier(0.4, 0, 0.2, 1)'
+        ball.style.top = `${positions[i]}px`
+        i++
+        setTimeout(step, 1800)
+      }
+      const timer = setTimeout(step, 1200)
+      return () => clearTimeout(timer)
+    } else {
+      // Timeline horizontal
+      const positions = dotRefs.current.map(d => {
+        if (!d) return 0
+        const r = d.getBoundingClientRect()
+        return r.left + r.width / 2 - tlRect.left
+      })
+      ball.style.transition = 'none'
+      ball.style.left = `${positions[0]}px`
+      ball.style.opacity = '1'
+
+      let i = 1
+      const step = () => {
+        if (i >= positions.length) return
+        ball.style.transition = 'left 1.1s cubic-bezier(0.4, 0, 0.2, 1)'
+        ball.style.left = `${positions[i]}px`
+        i++
+        setTimeout(step, 1800)
+      }
+      const timer = setTimeout(step, 1200)
+      return () => clearTimeout(timer)
     }
-
-    // Primer movimiento comienza después de que el usuario ve el paso 1
-    const timer = setTimeout(step, 1200)
-    return () => clearTimeout(timer)
   }, [isVisible])
 
   return (

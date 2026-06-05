@@ -634,10 +634,9 @@ img { display: block; max-width: 100%; }
   }
 
   .heroLabel {
-    background: linear-gradient(120deg, #9B1A6E 0%, #E0329A 35%, #FF6EC7 60%, #C2185B 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #E91E8C;
+    background: none;
+    -webkit-text-fill-color: #E91E8C;
   }
 
   .heroTitle {
@@ -1887,7 +1886,7 @@ img { display: block; max-width: 100%; }
 .tipoCard {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 300px;
+  grid-template-rows: auto 1fr;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 2px 18px rgba(185, 174, 177, 0.22);
@@ -1896,14 +1895,22 @@ img { display: block; max-width: 100%; }
   transition: box-shadow var(--transition-medium), transform var(--transition-medium);
 }
 
+/* Número — fila completa encima de las dos columnas */
+.tipoCardNumHeader {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  padding: 20px 28px 0;
+  background: #fff;
+}
+
 .tipoCard:hover {
   box-shadow: var(--glow-rose), 0 8px 28px rgba(185, 174, 177, 0.28);
   transform: translateY(-3px);
 }
 
-/* Imagen siempre a la derecha, texto a la izquierda */
-.tipoCardImgCol { order: 2; }
-.tipoCardBody   { order: 1; }
+/* Imagen a la derecha, texto a la izquierda (fila 2) */
+.tipoCardImgCol { grid-column: 2; grid-row: 2; }
+.tipoCardBody   { grid-column: 1; grid-row: 2; }
 
 /* Columna imagen */
 .tipoCardImgCol {
@@ -2055,14 +2062,15 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 6px 20px rgba(213, 179, 183, 0.55);
 }
 
-/* Mobile: apila imagen arriba, texto abajo */
+/* Mobile: apila número → imagen → texto */
 @media (max-width: 640px) {
   .tipoCard {
     grid-template-columns: 1fr;
-    min-height: 0;
+    grid-template-rows: auto auto 1fr;
   }
-  .tipoCardImgCol { order: 0; height: 200px; }
-  .tipoCardBody   { order: 1; }
+  .tipoCardNumHeader { grid-column: 1; grid-row: 1; padding: 16px 20px 0; }
+  .tipoCardImgCol    { grid-column: 1; grid-row: 2; height: 200px; }
+  .tipoCardBody      { grid-column: 1; grid-row: 3; }
   .tipoCardImgPlaceholder { height: 160px; }
 }
 
@@ -2348,6 +2356,23 @@ img { display: block; max-width: 100%; }
     height: auto;
     transform: none;
     background: linear-gradient(180deg, transparent 0%, #D5B3B7 5%, #D5B3B7 95%, transparent 100%);
+  }
+
+  /* Pelotita vertical */
+  .timelineBall {
+    top: 0;
+    left: 24px;
+  }
+
+  /* Línea se llena hacia abajo */
+  .timelineLine::after {
+    width: 100%;
+    height: 0%;
+    transition: height 5.7s linear 0.3s;
+  }
+  .timeline-visible .timelineLine::after {
+    height: 100%;
+    width: 100%;
   }
 
   .timelineStep {
