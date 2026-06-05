@@ -321,16 +321,18 @@ function TablaComparativa() {
 function ComoTrabajoBanner() {
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 100)
+    const t = setTimeout(() => setLoaded(true), 120)
     return () => clearTimeout(t)
   }, [])
   return (
     <div className="comoTrabajoBanner">
-      <img src="/img/foto.2.jpeg" alt="Natasha trabajando" className="comoTrabajoBannerBg" />
-      <div className="comoTrabajoBannerOverlay"></div>
-      <div className={`comoTrabajoBannerContent ${loaded ? 'animate-in' : ''}`}>
+      <div className={`bannerPinkBox ${loaded ? 'animate-in' : ''}`}>
+        <span className="bannerEyebrow">Mi proceso</span>
         <h2 className="comoTrabajoBannerTitle">Cómo trabajamos juntos</h2>
         <p className="comoTrabajoBannerText">Un proceso simple, claro y sin sorpresas. Sabés en todo momento qué está pasando.</p>
+      </div>
+      <div className={`bannerImgBox ${loaded ? 'animate-in' : ''}`}>
+        <img src="/img/foto.2.jpeg" alt="Natasha trabajando" />
       </div>
     </div>
   )
