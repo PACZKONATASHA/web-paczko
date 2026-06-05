@@ -117,6 +117,49 @@ function WorkCarousel() {
   )
 }
 
+function Hero() {
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 100)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <section className="hero" id="hero">
+      <div className={`heroContent ${loaded ? 'hero-loaded' : ''}`}>
+        <span className="heroLabel">
+          <span className="heroLabelDot" />
+          Diseño web premium
+        </span>
+        <h1 className="heroTitle">
+          Diseños web<br />que elevan<br />tu marca
+        </h1>
+        <p className="heroSubtitle">
+          Experiencias digitales elegantes, alineadas con la esencia de tu marca para conectar con tus clientes.
+        </p>
+        <a className="heroGlassBtn" href="#contacto">
+          Hablamos de tu proyecto
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <div className="heroSocialProof">
+          <div className="heroAvatars">
+            <span className="heroAvatarCircle heroAvatarA" />
+            <span className="heroAvatarCircle heroAvatarB" />
+            <span className="heroAvatarCircle heroAvatarC" />
+          </div>
+          <div className="heroSocialText">
+            <div className="heroStars">★★★★★</div>
+            <span>+63 clientes satisfechos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function TiposDeWeb() {
   const [ref, isVisible] = useScrollAnimation(0.1)
 
@@ -627,6 +670,7 @@ function App() {
     <>
       <Header />
       <main>
+        <Hero />
         <TiposDeWeb />
         <ComoTrabajo />
         <MaterialNecesario />
