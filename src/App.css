@@ -191,6 +191,7 @@
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.65s ease, transform 0.65s ease;
+  color: #ffffff;
 }
 
 .animate-section .section-title-animated,
@@ -912,8 +913,7 @@ img { display: block; max-width: 100%; }
 }
 
 .sectionRosa .section-title-animated {
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  color: #ffffff;
 }
 
 .container {
@@ -923,24 +923,22 @@ img { display: block; max-width: 100%; }
   z-index: 1;
 }
 
-/* Section headings */
+/* Section headings — blancos en todas las secciones */
 .container h2,
 .diferencialContent h2 {
   font-family: 'DM Serif Display', Georgia, serif;
   font-size: clamp(32px, 3.8vw, 56px);
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0 0 12px;
   line-height: 1.1;
 }
 
-.sectionWhite .container h2,
-.sectionWhite .diferencialContent h2,
-.sectionWhite .section-title-animated {
-  color: var(--text-primary);
-}
-
-.sectionWhite .sectionLead {
-  color: var(--text-body);
+.sectionLead {
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 700px;
+  margin: 0 0 40px;
+  line-height: 1.7;
 }
 
 /* Decorative line after h2 */
@@ -949,7 +947,7 @@ img { display: block; max-width: 100%; }
   display: block;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--pink), var(--violet));
+  background: rgba(255, 255, 255, 0.55);
   margin-top: 14px;
   border-radius: 2px;
   transition: width 0.7s ease 0.3s;
@@ -957,23 +955,6 @@ img { display: block; max-width: 100%; }
 
 .animate-section .container h2::after {
   width: 48px;
-}
-
-.sectionLead {
-  font-size: clamp(16px, 1.5vw, 19px);
-  color: var(--text-body);
-  max-width: 700px;
-  margin: 0 0 40px;
-  line-height: 1.7;
-}
-
-.sectionRosa .section-title-animated,
-.sectionRosa .container h2 {
-  color: var(--text-primary);
-}
-
-.sectionRosa .sectionLead {
-  color: var(--text-body);
 }
 
 /* ====== QUÉ HAGO ====== */
@@ -2066,9 +2047,48 @@ img { display: block; max-width: 100%; }
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, #D5B3B7 6%, #D5B3B7 94%, transparent 100%);
+  background: rgba(213, 179, 183, 0.22);   /* base tenue */
   transform: translateY(-50%);
   z-index: 0;
+  overflow: visible;
+}
+
+/* Barra que se llena de izquierda a derecha */
+.timelineLine::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background: #D5B3B7;
+  border-radius: 2px;
+  transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+}
+
+.timeline-visible .timelineLine::after {
+  width: 100%;
+}
+
+/* Pelotita que viaja sobre la línea */
+.timelineLine::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #D5B3B7;
+  box-shadow: 0 0 0 5px rgba(213, 179, 183, 0.35),
+              0 2px 8px rgba(213, 179, 183, 0.50);
+  z-index: 6;
+  transition: left 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+}
+
+.timeline-visible .timelineLine::before {
+  left: 100%;
 }
 
 .timelineStep {
@@ -2149,15 +2169,45 @@ img { display: block; max-width: 100%; }
   font-size: 18px;
   color: #ffffff;
   box-shadow: 0 4px 20px rgba(213, 179, 183, 0.55);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   cursor: default;
   user-select: none;
+  opacity: 0;
+  transform: scale(0);
 }
 
+/* Punto aparece con rebote cuando el timeline es visible */
+.timeline-visible .timelineDot {
+  animation: tlDotPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--step-delay);
+}
+
+/* Al hover el punto crece */
 .timelineStep:hover .timelineDot {
-  transform: scale(1.18);
   background: #C5A0A5;
   box-shadow: 0 6px 28px rgba(213, 179, 183, 0.75);
+}
+
+/* Texto de cada paso: empieza invisible y sube */
+.timelineCardTop,
+.timelineCardBottom {
+  opacity: 0;
+}
+
+.timeline-visible .timelineCardTop,
+.timeline-visible .timelineCardBottom {
+  animation: tlTextIn 0.45s ease forwards;
+  animation-delay: calc(var(--step-delay) + 0.25s);
+}
+
+@keyframes tlDotPop {
+  0%   { opacity: 0; transform: scale(0); }
+  65%  { opacity: 1; transform: scale(1.25); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes tlTextIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .timelineTitulo {
