@@ -117,38 +117,6 @@ function WorkCarousel() {
   )
 }
 
-function Hero() {
-  const [loaded, setLoaded] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 100)
-    return () => clearTimeout(timer)
-  }, [])
-
-  return (
-    <section className="hero" id="hero">
-      <div className={`heroCenter ${loaded ? 'animate-in' : ''}`}>
-        <span className="heroTag">Natasha Paczko · Diseño web</span>
-        <h1 className="heroTitle">
-          Páginas web claras<br />para tu negocio
-        </h1>
-        <p className="heroSubtitle">
-          Ayudo a emprendimientos, profesionales y negocios a tener una presencia online simple, ordenada y funcional. En esta página encontrás todo lo que necesitás saber antes de pedir tu web.
-        </p>
-        <ul className="heroChecks">
-          <li>Landing pages y webs informativas</li>
-          <li>Catálogos con carrito a WhatsApp</li>
-          <li>100% responsive para celular</li>
-        </ul>
-        <div className="heroButtons">
-          <a className="btnHeroPrimary" href="#servicios">¿Qué tipo de página necesito?</a>
-          <a className="btnHeroSecondary" href="https://wa.me/5493786417162?text=Hola%2C%20quiero%20consultar%20por%20mi%20p%C3%A1gina%20web" target="_blank" rel="noopener">Consultar por WhatsApp</a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function TiposDeWeb() {
   const [ref, isVisible] = useScrollAnimation(0.1)
 
@@ -659,7 +627,6 @@ function App() {
     <>
       <Header />
       <main>
-        <Hero />
         <TiposDeWeb />
         <ComoTrabajo />
         <MaterialNecesario />
