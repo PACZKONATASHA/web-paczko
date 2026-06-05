@@ -624,10 +624,17 @@ img { display: block; max-width: 100%; }
 
   /* Texto debajo del objeto */
   .heroContent {
-    padding: 28px 28px 52px;
+    padding: 24px 28px 52px;
     max-width: 100%;
     gap: 18px;
     flex: 1;
+    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .heroLabel {
+    color: var(--rosa);
   }
 
   .heroTitle {
@@ -650,8 +657,9 @@ img { display: block; max-width: 100%; }
   }
 
   .heroContent {
-    padding: 20px 20px 44px;
+    padding: 24px 20px 44px;
     gap: 16px;
+    margin-top: -60px;
   }
 
   .heroTitle {
