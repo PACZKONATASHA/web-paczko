@@ -217,7 +217,7 @@ function TiposDeWeb() {
         <div className="tiposGrid">
           {tipos.map((tipo, i) => (
             <div
-              className={`tipoCard card-3d ${isVisible ? 'card-visible' : ''} ${i % 2 === 1 ? 'tipoCard--reverse' : ''}`}
+              className={`tipoCard card-3d ${isVisible ? 'card-visible' : ''}`}
               key={i}
               style={{ transitionDelay: `${i * 0.12}s` }}
             >
