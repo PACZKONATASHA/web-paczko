@@ -583,6 +583,11 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.02em;
 }
 
+/* Imagen 3D solo en mobile — oculta en desktop */
+.heroMobileImg {
+  display: none;
+}
+
 /* ── RESPONSIVE ── */
 
 /* Tablet: achica el padding y ajusta tamaños */
@@ -593,35 +598,35 @@ img { display: block; max-width: 100%; }
   }
 }
 
-/* Mobile: objeto visible al centro-derecha, texto abajo con degradado */
+/* Mobile: objeto arriba como imagen real, texto abajo */
 @media (max-width: 768px) {
   .hero {
-    /* Desplaza la imagen para que el objeto quede centrado/derecha */
-    background-position: 72% center;
-    background-size: 210%;
-    align-items: flex-end;
+    background-image: none;           /* quita el fondo imagen */
+    background-color: #D5B3B7;        /* fondo plano rosa coincidiendo con la imagen */
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 100svh;
   }
 
-  /* Degradado que oscurece la parte inferior para que el texto sea legible */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(200, 158, 165, 0.96) 0%,
-      rgba(200, 158, 165, 0.82) 35%,
-      rgba(200, 158, 165, 0.30) 58%,
-      transparent 75%
-    );
-    z-index: 0;
+  /* Sin overlay — ya no se necesita */
+  .hero::before { display: none; }
+
+  /* La imagen ocupa la mitad superior de la pantalla */
+  .heroMobileImg {
+    display: block;
+    width: 100%;
+    height: 52svh;
+    object-fit: cover;
+    object-position: 72% 12%;   /* baja el objeto — se corta por abajo */
+    flex-shrink: 0;
   }
 
+  /* Texto debajo del objeto */
   .heroContent {
-    padding: 28px 28px 56px;
+    padding: 28px 28px 52px;
     max-width: 100%;
-    gap: 20px;
-    z-index: 1;
+    gap: 18px;
+    flex: 1;
   }
 
   .heroTitle {
@@ -639,13 +644,17 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 480px) {
+  .heroMobileImg {
+    height: 44svh;
+  }
+
   .heroContent {
-    padding: 20px 20px 48px;
-    gap: 18px;
+    padding: 20px 20px 44px;
+    gap: 16px;
   }
 
   .heroTitle {
-    font-size: clamp(36px, 12vw, 52px);
+    font-size: clamp(36px, 12vw, 50px);
     letter-spacing: -0.5px;
   }
 

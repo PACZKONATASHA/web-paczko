@@ -127,10 +127,17 @@ function Hero() {
 
   return (
     <section className="hero" id="hero">
+      {/* Imagen visible solo en mobile — objeto 3D arriba */}
+      <img
+        className="heroMobileImg"
+        src="/img/imagen3Dhero.png"
+        alt=""
+        aria-hidden="true"
+      />
       <div className={`heroContent ${loaded ? 'hero-loaded' : ''}`}>
         <span className="heroLabel">
           <span className="heroLabelDot" />
-          Diseño web premium
+          Diseño creativo
         </span>
         <h1 className="heroTitle">
           Diseños web<br />que elevan<br />tu marca
