@@ -616,7 +616,7 @@ img { display: block; max-width: 100%; }
   .heroMobileImg {
     display: block;
     width: 100%;
-    height: 52svh;
+    height: 65svh;
     object-fit: contain;
     object-position: center bottom;
     flex-shrink: 0;
