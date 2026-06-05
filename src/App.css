@@ -1,28 +1,28 @@
 :root {
   /* =====================================================
      DESIGN SYSTEM — Natasha Paczko
-     Direction: Clean — Rosa Viejo × Negro × Blanco y Gris
+     Paleta: Fondo Principal #D5B3B7 × Glow Rosa #F3A7B7 × Plateado Metálico
      Typography: DM Serif Display + Manrope
   ===================================================== */
 
   /* --- BACKGROUNDS --- */
-  --bg-base:    #FFFFFF;   /* blanco puro */
-  --bg-soft:    #F4F4F4;   /* gris claro */
-  --bg-blush:   #FFFFFF;   /* blanco tarjetas */
-  --bg-dark:    #1A1A1A;   /* negro footer */
-  --surface:    #F4F4F4;
+  --bg-base:    #F7F3F4;   /* highlight metálico — fondo neutro claro */
+  --bg-soft:    #E7D7DA;   /* fondo secundario */
+  --bg-blush:   #D5B3B7;   /* fondo principal — coincide exacto con la imagen 3D */
+  --bg-dark:    #2D1B22;   /* rosa oscuro para footer */
+  --surface:    #F7F3F4;
   --surface-alt:#FFFFFF;
 
-  /* --- BRAND — Rosa viejo --- */
-  --pink:         #B87473;   /* rosa viejo (color de marca) */
-  --pink-dark:    #A06060;   /* hover */
-  --pink-light:   #D4A0A0;   /* tono suave */
-  --blush:        #EDCFB8;
-  --blush-medium: #EDCFB8;
+  /* --- BRAND — Glow Rosa --- */
+  --pink:         #F3A7B7;   /* glow rosa (color de marca) */
+  --pink-dark:    #D9899E;   /* hover */
+  --pink-light:   #D5B3B7;   /* fondo principal como tono suave */
+  --blush:        #E7D7DA;
+  --blush-medium: #E7D7DA;
 
   /* --- SECONDARY --- */
-  --violet:       #B87473;   /* mismo rosa viejo como acento secundario */
-  --violet-light: #F2E8E8;
+  --violet:       #F3A7B7;
+  --violet-light: #F7F3F4;
 
   /* --- TEXT --- */
   --text-primary: #1A1A1A;   /* negro */
@@ -31,23 +31,23 @@
   --text-light:   #FFFFFF;   /* blanco para fondos oscuros */
 
   /* --- BORDERS --- */
-  --border:       rgba(0, 0, 0, 0.14);
-  --border-light: rgba(0, 0, 0, 0.08);
+  --border:       rgba(185, 174, 177, 0.40);
+  --border-light: rgba(185, 174, 177, 0.22);
 
   /* --- COMPATIBILITY ALIASES --- */
-  --gold:          #B87473;
-  --gold-light:    #F2E8E8;
-  --gold-dark:     #A06060;
-  --dark:          #1A1A1A;
-  --rosa:          #B87473;
-  --rosa-dark:     #A06060;
-  --rosa-light:    #D4A0A0;
+  --gold:          #F3A7B7;
+  --gold-light:    #F7F3F4;
+  --gold-dark:     #D9899E;
+  --dark:          #2D1B22;
+  --rosa:          #F3A7B7;
+  --rosa-dark:     #D9899E;
+  --rosa-light:    #D5B3B7;
   --blanco:        #FFFFFF;
-  --crema:         #FFFFFF;
-  --crema-oscura:  #F4F4F4;
-  --fondo-claro:   #F4F4F4;
-  --gris-border:   rgba(0, 0, 0, 0.08);
-  --gris-claro:    #F4F4F4;
+  --crema:         #F7F3F4;
+  --crema-oscura:  #E7D7DA;
+  --fondo-claro:   #E7D7DA;
+  --gris-border:   rgba(185, 174, 177, 0.22);
+  --gris-claro:    #F7F3F4;
   --gris-oscuro:   #3D3D3D;
   --texto-oscuro:  #1A1A1A;
   --texto-secundario:        #3D3D3D;
@@ -64,11 +64,11 @@
   --transition-slow:   0.6s ease;
 
   /* --- SHADOWS --- */
-  --shadow-soft:   0 2px 12px rgba(0, 0, 0, 0.07);
-  --shadow-medium: 0 6px 24px rgba(0, 0, 0, 0.10);
-  --shadow-strong: 0 16px 48px rgba(0, 0, 0, 0.14);
-  --glow-rose:     0 4px 24px rgba(184, 116, 115, 0.2);
-  --glow-violet:   0 4px 24px rgba(184, 116, 115, 0.15);
+  --shadow-soft:   0 2px 12px rgba(185, 174, 177, 0.18);
+  --shadow-medium: 0 6px 24px rgba(185, 174, 177, 0.26);
+  --shadow-strong: 0 16px 48px rgba(185, 174, 177, 0.34);
+  --glow-rose:     0 4px 24px rgba(243, 167, 183, 0.35);
+  --glow-violet:   0 4px 24px rgba(243, 167, 183, 0.25);
 }
 
 /* ====== KEYFRAMES ====== */
@@ -470,15 +470,15 @@ img { display: block; max-width: 100%; }
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #8A4450;
-  box-shadow: 0 0 10px rgba(138, 68, 80, 0.70);
+  background: #F3A7B7;
+  box-shadow: 0 0 10px rgba(243, 167, 183, 0.80);
   flex-shrink: 0;
   animation: dotPulse 2.4s ease-in-out infinite;
 }
 
 @keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 6px rgba(138, 68, 80, 0.55); transform: scale(1); }
-  50%       { box-shadow: 0 0 16px rgba(138, 68, 80, 0.85); transform: scale(1.3); }
+  0%, 100% { box-shadow: 0 0 6px rgba(243, 167, 183, 0.60); transform: scale(1); }
+  50%       { box-shadow: 0 0 16px rgba(243, 167, 183, 0.90); transform: scale(1.3); }
 }
 
 .heroTitle {
@@ -506,7 +506,7 @@ img { display: block; max-width: 100%; }
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #1A0A0D;
+  color: #2D1B22;
   background: rgba(255, 255, 255, 0.42);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -515,16 +515,16 @@ img { display: block; max-width: 100%; }
   border-radius: 100px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 4px 20px rgba(138, 68, 80, 0.15),
+  box-shadow: 0 4px 20px rgba(243, 167, 183, 0.22),
               inset 0 1px 0 rgba(255, 255, 255, 0.60);
 }
 
 .heroGlassBtn:hover {
   background: rgba(255, 255, 255, 0.65);
-  box-shadow: 0 8px 32px rgba(138, 68, 80, 0.25),
+  box-shadow: 0 8px 32px rgba(243, 167, 183, 0.35),
               inset 0 1px 0 rgba(255, 255, 255, 0.85);
   transform: translateY(-2px);
-  color: #1A0A0D;
+  color: #2D1B22;
 }
 
 .heroGlassBtn svg {
@@ -570,7 +570,7 @@ img { display: block; max-width: 100%; }
 }
 
 .heroStars {
-  color: #8A4450;
+  color: #F3A7B7;
   font-size: 13px;
   letter-spacing: 1px;
   line-height: 1;
@@ -601,8 +601,8 @@ img { display: block; max-width: 100%; }
 /* Mobile: objeto arriba como imagen real, texto abajo */
 @media (max-width: 768px) {
   .hero {
-    background-image: none;           /* quita el fondo imagen */
-    background-color: #D5B3B7;        /* fondo plano rosa coincidiendo con la imagen */
+    background-image: none;
+    background-color: #D5B3B7;        /* fondo principal de la paleta */
     flex-direction: column;
     align-items: stretch;
     min-height: 100svh;
@@ -616,8 +616,8 @@ img { display: block; max-width: 100%; }
     display: block;
     width: 100%;
     height: 52svh;
-    object-fit: cover;
-    object-position: 72% 12%;   /* baja el objeto — se corta por abajo */
+    object-fit: contain;
+    object-position: center bottom;
     flex-shrink: 0;
   }
 
@@ -645,7 +645,7 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 480px) {
   .heroMobileImg {
-    height: 44svh;
+    height: 48svh;
   }
 
   .heroContent {
@@ -861,18 +861,18 @@ img { display: block; max-width: 100%; }
   width: 100%;
   justify-content: center;
   color: #fff;
-  background: linear-gradient(135deg, #C49070 0%, #8E5240 38%, #B07860 68%, #C8947A 100%);
+  background: linear-gradient(135deg, #F3A7B7 0%, #D9899E 38%, #E8A0B2 68%, #F3A7B7 100%);
   padding: 16px 32px;
   font-size: 14px;
-  box-shadow: 0 4px 20px rgba(142, 82, 64, 0.40);
+  box-shadow: 0 4px 20px rgba(243, 167, 183, 0.45);
   position: relative;
   overflow: hidden;
 }
 
 .btnSubmit:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #D4A080 0%, #9C6050 38%, #C08870 68%, #D8A888 100%);
-  box-shadow: 0 8px 28px rgba(142, 82, 64, 0.55);
+  background: linear-gradient(135deg, #E896AB 0%, #C87090 38%, #E094A8 68%, #F3A7B7 100%);
+  box-shadow: 0 8px 28px rgba(243, 167, 183, 0.60);
   color: #fff;
 }
 
@@ -891,7 +891,7 @@ img { display: block; max-width: 100%; }
 
 /* ====== SECTIONS ====== */
 .sectionWhite {
-  background: #F5E4DC;
+  background: #E7D7DA;
   padding: 96px 40px;
 }
 
@@ -1117,7 +1117,7 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(
     105deg,
     transparent 40%,
-    rgba(194, 113, 143, 0.06) 50%,
+    rgba(243, 167, 183, 0.08) 50%,
     transparent 60%
   );
   background-size: 200% auto;
@@ -1196,8 +1196,8 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #fff;
-  background: rgba(194, 113, 143, 0.35);
-  border: 1px solid rgba(194, 113, 143, 0.55);
+  background: rgba(243, 167, 183, 0.38);
+  border: 1px solid rgba(243, 167, 183, 0.60);
   border-radius: 100px;
   padding: 4px 12px;
   margin-bottom: 12px;
@@ -1242,9 +1242,9 @@ img { display: block; max-width: 100%; }
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: rgba(194, 113, 143, 0.18);
-  border: 1px solid rgba(194, 113, 143, 0.40);
-  color: var(--pink-light);
+  background: rgba(243, 167, 183, 0.18);
+  border: 1px solid rgba(243, 167, 183, 0.40);
+  color: var(--pink);
   margin-bottom: 28px;
   animation: float 4s ease-in-out infinite;
 }
@@ -1544,7 +1544,7 @@ img { display: block; max-width: 100%; }
 }
 
 .comoTrabajoBody {
-  background: #F5E4DC;
+  background: #F7F3F4;
   padding: 80px 40px;
 }
 
@@ -1623,14 +1623,14 @@ img { display: block; max-width: 100%; }
 
 .field.focused label,
 .field.filled label {
-  color: #8E5240;
+  color: #D9899E;
 }
 
 .field input,
 .field textarea {
   width: 100%;
   background: var(--bg-soft);
-  border: 1.5px solid #C49070;
+  border: 1.5px solid #B9AEB1;
   border-radius: 10px;
   padding: 14px 18px;
   font-family: 'Manrope', sans-serif;
@@ -1653,8 +1653,8 @@ img { display: block; max-width: 100%; }
 
 .field.focused input,
 .field.focused textarea {
-  border-color: #B07860;
-  box-shadow: 0 0 0 3px rgba(176, 120, 96, 0.18);
+  border-color: #F3A7B7;
+  box-shadow: 0 0 0 3px rgba(243, 167, 183, 0.22);
 }
 
 .field input:hover,
@@ -1673,7 +1673,7 @@ img { display: block; max-width: 100%; }
 
 /* ====== FOOTER ====== */
 .siteFooter {
-  background: #8E5240;
+  background: #2D1B22;
   padding: 24px 60px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
@@ -1821,13 +1821,13 @@ img { display: block; max-width: 100%; }
 
 .tipoCard {
   background: linear-gradient(#fff, #fff) padding-box,
-              linear-gradient(145deg, #E0E0E0 0%, #A8A8A8 50%, #E0E0E0 100%) border-box;
+              linear-gradient(145deg, #D9D4D6 0%, #B9AEB1 50%, #D9D4D6 100%) border-box;
   border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 0;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 14px rgba(185, 174, 177, 0.20);
   transition: box-shadow var(--transition-medium), transform var(--transition-medium), background var(--transition-medium);
 }
 
@@ -1837,8 +1837,8 @@ img { display: block; max-width: 100%; }
 
 .tipoCard:hover {
   background: linear-gradient(#fff, #fff) padding-box,
-              linear-gradient(145deg, #D0D0D0 0%, #888 50%, #D0D0D0 100%) border-box;
-  box-shadow: var(--glow-rose), 0 6px 24px rgba(0, 0, 0, 0.10);
+              linear-gradient(145deg, #F3A7B7 0%, #D9899E 50%, #F3A7B7 100%) border-box;
+  box-shadow: var(--glow-rose), 0 6px 24px rgba(185, 174, 177, 0.22);
   transform: translateY(-4px);
 }
 
@@ -1952,13 +1952,13 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #fff;
-  background: linear-gradient(135deg, #C49070 0%, #8E5240 38%, #B07860 68%, #C8947A 100%);
+  background: linear-gradient(135deg, #F3A7B7 0%, #D9899E 38%, #E8A0B2 68%, #F3A7B7 100%);
   border: none;
   border-radius: 100px;
   padding: 10px 24px;
   text-decoration: none;
   transition: all var(--transition-fast);
-  box-shadow: 0 4px 18px rgba(142, 82, 64, 0.40);
+  box-shadow: 0 4px 18px rgba(243, 167, 183, 0.45);
   align-self: center;
   width: fit-content;
 }
