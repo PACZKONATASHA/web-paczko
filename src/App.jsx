@@ -374,14 +374,14 @@ function ComoTrabajo() {
     const step = () => {
       if (i >= positions.length) return
       // Activa transición y mueve al siguiente punto
-      ball.style.transition = 'left 0.55s cubic-bezier(0.4, 0, 0.2, 1)'
+      ball.style.transition = 'left 1.1s cubic-bezier(0.4, 0, 0.2, 1)'
       ball.style.left = `${positions[i]}px`
       i++
-      setTimeout(step, 950)   // 550ms viaje + 400ms pausa en cada punto
+      setTimeout(step, 1800)   // 1100ms viaje + 700ms pausa en cada punto
     }
 
     // Primer movimiento comienza después de que el usuario ve el paso 1
-    const timer = setTimeout(step, 800)
+    const timer = setTimeout(step, 1200)
     return () => clearTimeout(timer)
   }, [isVisible])
 
@@ -399,7 +399,7 @@ function ComoTrabajo() {
                 <div
                   key={i}
                   className="timelineStep"
-                  style={{ '--step-delay': `${i * 0.95}s` }}
+                  style={{ '--step-delay': `${i * 1.8}s` }}
                 >
                   <div className={`timelineCard ${arriba ? 'timelineCardTop' : 'timelineCardTopVacio'}`}>
                     {arriba && <>
@@ -443,8 +443,15 @@ function MaterialNecesario() {
   ]
 
   return (
-    <section className="sectionRosa" id="material" ref={ref}>
-      <div className={`container ${isVisible ? 'animate-section' : ''}`}>
+    <section id="material" ref={ref} className="materialSection">
+      <img
+        src="/img/material-necesario-para-trabajar.png"
+        alt=""
+        aria-hidden="true"
+        className="materialBg"
+      />
+      <div className="materialOverlay" />
+      <div className={`container materialContent ${isVisible ? 'animate-section' : ''}`}>
         <h2 className="section-title-animated">Material necesario para comenzar</h2>
         <p className="sectionLead animate-fade-up delay-1">Para poder avanzar con la página, el cliente debe enviar todo el material antes de iniciar el desarrollo.</p>
         <div className="materialBox animate-fade-up delay-2">
