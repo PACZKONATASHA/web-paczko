@@ -1827,7 +1827,7 @@ img { display: block; max-width: 100%; }
   display: inline-block;
   font-family: 'DM Serif Display', serif;
   font-size: 38px;
-  color: var(--pink);
+  color: #B8ACAF;   /* gris plateado del objeto 3D */
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -2047,10 +2047,9 @@ img { display: block; max-width: 100%; }
   left: 0;
   right: 0;
   height: 2px;
-  background: rgba(213, 179, 183, 0.22);   /* base tenue */
+  background: rgba(213, 179, 183, 0.22);
   transform: translateY(-50%);
   z-index: 0;
-  overflow: visible;
 }
 
 /* Barra que se llena de izquierda a derecha */
@@ -2062,33 +2061,29 @@ img { display: block; max-width: 100%; }
   width: 0%;
   background: #D5B3B7;
   border-radius: 2px;
-  transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+  transition: width 5.7s linear 0.3s;   /* 6 pasos × 950ms */
 }
 
 .timeline-visible .timelineLine::after {
   width: 100%;
 }
 
-/* Pelotita que viaja sobre la línea */
-.timelineLine::before {
-  content: '';
+/* Pelotita real animada con JS */
+.timelineBall {
   position: absolute;
   top: 50%;
-  left: 0%;
-  transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
+  left: 0;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #ffffff;
   border: 2.5px solid #D5B3B7;
-  box-shadow: 0 0 0 5px rgba(213, 179, 183, 0.35),
-              0 2px 8px rgba(213, 179, 183, 0.50);
+  box-shadow: 0 0 0 5px rgba(213, 179, 183, 0.30),
+              0 2px 10px rgba(213, 179, 183, 0.55);
+  transform: translate(-50%, -50%);
   z-index: 6;
-  transition: left 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
-}
-
-.timeline-visible .timelineLine::before {
-  left: 100%;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .timelineStep {

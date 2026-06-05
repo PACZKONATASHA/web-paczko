@@ -338,6 +338,9 @@ function ComoTrabajoBanner() {
 
 function ComoTrabajo() {
   const [ref, isVisible] = useScrollAnimation(0.1)
+  const ballRef  = useRef(null)
+  const tlRef    = useRef(null)
+  const dotRefs  = useRef([])
 
   const pasos = [
     { n: 1, titulo: 'Hablamos', detalle: 'Me contás sobre tu negocio y qué querés mostrar. Sin tecnicismos, sin presión.' },
@@ -348,20 +351,55 @@ function ComoTrabajo() {
     { n: 6, titulo: '¡Tu página está lista!', detalle: 'La publicamos y queda online para que tus clientes la vean desde el primer día.' },
   ]
 
+  /* Animación JS: pelotita se mueve de punto a punto */
+  useEffect(() => {
+    if (!isVisible) return
+    const ball = ballRef.current
+    const tl   = tlRef.current
+    if (!ball || !tl) return
+
+    const tlRect = tl.getBoundingClientRect()
+    const positions = dotRefs.current.map(d => {
+      if (!d) return 0
+      const r = d.getBoundingClientRect()
+      return r.left + r.width / 2 - tlRect.left
+    })
+
+    // Coloca la pelota en el paso 1 sin transición
+    ball.style.transition = 'none'
+    ball.style.left = `${positions[0]}px`
+    ball.style.opacity = '1'
+
+    let i = 1
+    const step = () => {
+      if (i >= positions.length) return
+      // Activa transición y mueve al siguiente punto
+      ball.style.transition = 'left 0.55s cubic-bezier(0.4, 0, 0.2, 1)'
+      ball.style.left = `${positions[i]}px`
+      i++
+      setTimeout(step, 950)   // 550ms viaje + 400ms pausa en cada punto
+    }
+
+    // Primer movimiento comienza después de que el usuario ve el paso 1
+    const timer = setTimeout(step, 800)
+    return () => clearTimeout(timer)
+  }, [isVisible])
+
   return (
     <section id="como-trabajo" ref={ref}>
       <ComoTrabajoBanner />
       <div className="comoTrabajoBody">
         <div className={`container ${isVisible ? 'animate-section' : ''}`}>
-          <div className={`timeline ${isVisible ? 'timeline-visible' : ''}`}>
+          <div className={`timeline ${isVisible ? 'timeline-visible' : ''}`} ref={tlRef}>
             <div className="timelineLine" />
+            <div className="timelineBall" ref={ballRef} />
             {pasos.map((paso, i) => {
               const arriba = i % 2 === 0
               return (
                 <div
                   key={i}
                   className="timelineStep"
-                  style={{ '--step-delay': `${i * 0.22}s` }}
+                  style={{ '--step-delay': `${i * 0.95}s` }}
                 >
                   <div className={`timelineCard ${arriba ? 'timelineCardTop' : 'timelineCardTopVacio'}`}>
                     {arriba && <>
@@ -370,7 +408,7 @@ function ComoTrabajo() {
                     </>}
                   </div>
                   <div className="timelineDotWrap">
-                    <div className="timelineDot">{paso.n}</div>
+                    <div className="timelineDot" ref={el => dotRefs.current[i] = el}>{paso.n}</div>
                   </div>
                   <div className={`timelineCard ${!arriba ? 'timelineCardBottom' : 'timelineCardBottomVacio'}`}>
                     {!arriba && <>
