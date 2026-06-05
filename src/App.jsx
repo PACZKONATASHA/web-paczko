@@ -151,17 +151,6 @@ function Hero() {
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
-        <div className="heroSocialProof">
-          <div className="heroAvatars">
-            <span className="heroAvatarCircle heroAvatarA" />
-            <span className="heroAvatarCircle heroAvatarB" />
-            <span className="heroAvatarCircle heroAvatarC" />
-          </div>
-          <div className="heroSocialText">
-            <div className="heroStars">★★★★★</div>
-            <span>+63 clientes satisfechos</span>
-          </div>
-        </div>
       </div>
     </section>
   )
