@@ -216,7 +216,27 @@ function TiposDeWeb() {
         <p className="sectionLead animate-fade-up delay-1">Antes de empezar, es importante entender qué opción se adapta mejor a tu negocio. Acá te explico cada una y podés ver un ejemplo real.</p>
         <div className="tiposGrid">
           {tipos.map((tipo, i) => (
-            <div className={`tipoCard card-3d ${isVisible ? 'card-visible' : ''}`} key={i} style={{ transitionDelay: `${i * 0.12}s` }}>
+            <div
+              className={`tipoCard card-3d ${isVisible ? 'card-visible' : ''} ${i % 2 === 1 ? 'tipoCard--reverse' : ''}`}
+              key={i}
+              style={{ transitionDelay: `${i * 0.12}s` }}
+            >
+              {/* Columna imagen */}
+              <div className="tipoCardImgCol">
+                {tipo.imagen ? (
+                  tipo.link
+                    ? <a href={tipo.link} target="_blank" rel="noopener noreferrer" className="tipoCardImgLink">
+                        <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                      </a>
+                    : <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                ) : (
+                  <div className="tipoCardImgPlaceholder">
+                    <span className="tipoNumeroBig">{tipo.numero}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Columna texto + botón */}
               <div className="tipoCardBody">
                 <span className="tipoNumero">{tipo.numero}</span>
                 <h3 className="tipoCardTitle">{tipo.titulo}</h3>
@@ -231,28 +251,17 @@ function TiposDeWeb() {
                     {tipo.incluye.map((item, j) => <li key={j}>{item}</li>)}
                   </ul>
                 </div>
-              </div>
-              {tipo.imagen && (
-                tipo.link ? (
-                  <a href={tipo.link} target="_blank" rel="noopener noreferrer" className="tipoCardImgLink">
-                    <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
-                  </a>
-                ) : (
-                  <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
-                )
-              )}
-              {tipo.link && (
-                <div className="tipoCardFooter">
+                {tipo.link && (
                   <a className="tipoCardLink" href={tipo.link} target="_blank" rel="noopener noreferrer">
                     Ver ejemplo en vivo
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
                       <polyline points="15 3 21 3 21 9"/>
                       <line x1="10" y1="14" x2="21" y2="3"/>
                     </svg>
                   </a>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           ))}
         </div>
