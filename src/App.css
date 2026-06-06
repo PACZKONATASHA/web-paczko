@@ -6,48 +6,48 @@
   ===================================================== */
 
   /* --- BACKGROUNDS --- */
-  --bg-base:    #E8C0CA;   /* highlight metálico — fondo neutro claro */
-  --bg-soft:    #E7D7DA;   /* fondo secundario */
-  --bg-blush:   #D5B3B7;   /* fondo principal */
-  --bg-dark:    #1A0810;   /* rosa oscuro para footer */
-  --surface:    #E8C0CA;
+  --bg-base:    #EDE0E3;
+  --bg-soft:    #D4B8BE;
+  --bg-blush:   #BE8F95;
+  --bg-dark:    #200F1A;
+  --surface:    #EDE0E3;
   --surface-alt:#FFFFFF;
 
   /* --- BRAND — Glow Rosa --- */
-  --pink:         #D93560;   /* glow rosa (color de marca) */
-  --pink-dark:    #B01040;   /* hover */
-  --pink-light:   #D5B3B7;   /* fondo principal como tono suave */
-  --blush:        #E7D7DA;
-  --blush-medium: #E7D7DA;
+  --pink:         #E8708F;
+  --pink-dark:    #C85070;
+  --pink-light:   #BE8F95;
+  --blush:        #D4B8BE;
+  --blush-medium: #D4B8BE;
 
   /* --- SECONDARY --- */
-  --violet:       #D93560;
-  --violet-light: #E8C0CA;
+  --violet:       #E8708F;
+  --violet-light: #EDE0E3;
 
   /* --- TEXT --- */
-  --text-primary: #0D0D0D;   /* negro */
-  --text-body:    #1E1E1E;   /* gris oscuro */
-  --text-muted:   #555555;   /* gris medio */
-  --text-light:   #FFFFFF;   /* blanco para fondos oscuros */
+  --text-primary: #0D0D0D;
+  --text-body:    #1E1E1E;
+  --text-muted:   #555555;
+  --text-light:   #FFFFFF;
 
   /* --- BORDERS --- */
-  --border:       rgba(180, 80, 110, 0.55);
-  --border-light: rgba(180, 80, 110, 0.30);
+  --border:       rgba(160, 130, 138, 0.55);
+  --border-light: rgba(160, 130, 138, 0.35);
 
   /* --- COMPATIBILITY ALIASES --- */
-  --gold:          #D93560;
-  --gold-light:    #E8C0CA;
-  --gold-dark:     #B01040;
-  --dark:          #1A0810;
-  --rosa:          #D93560;
-  --rosa-dark:     #B01040;
-  --rosa-light:    #D5B3B7;
+  --gold:          #E8708F;
+  --gold-light:    #EDE0E3;
+  --gold-dark:     #C85070;
+  --dark:          #200F1A;
+  --rosa:          #E8708F;
+  --rosa-dark:     #C85070;
+  --rosa-light:    #BE8F95;
   --blanco:        #FFFFFF;
-  --crema:         #E8C0CA;
-  --crema-oscura:  #E7D7DA;
-  --fondo-claro:   #E7D7DA;
-  --gris-border:   rgba(180, 80, 110, 0.30);
-  --gris-claro:    #E8C0CA;
+  --crema:         #EDE0E3;
+  --crema-oscura:  #D4B8BE;
+  --fondo-claro:   #D4B8BE;
+  --gris-border:   rgba(160, 130, 138, 0.35);
+  --gris-claro:    #EDE0E3;
   --gris-oscuro:   #3D3D3D;
   --texto-oscuro:  #1A1A1A;
   --texto-secundario:        #3D3D3D;
@@ -64,11 +64,11 @@
   --transition-slow:   0.6s ease;
 
   /* --- SHADOWS --- */
-  --shadow-soft:   0 2px 12px rgba(180, 40, 80, 0.30);
-  --shadow-medium: 0 6px 24px rgba(180, 40, 80, 0.42);
-  --shadow-strong: 0 16px 48px rgba(180, 40, 80, 0.55);
-  --glow-rose:     0 4px 24px rgba(217, 53, 96, 0.65);
-  --glow-violet:   0 4px 24px rgba(217, 53, 96, 0.45);
+  --shadow-soft:   0 2px 12px rgba(160, 100, 120, 0.28);
+  --shadow-medium: 0 6px 24px rgba(160, 100, 120, 0.38);
+  --shadow-strong: 0 16px 48px rgba(160, 100, 120, 0.48);
+  --glow-rose:     0 4px 24px rgba(232, 112, 143, 0.55);
+  --glow-violet:   0 4px 24px rgba(232, 112, 143, 0.40);
 }
 
 /* ====== KEYFRAMES ====== */
@@ -191,7 +191,7 @@
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.65s ease, transform 0.65s ease;
-  color: #ffffff;
+  color: #0D0D0D;
 }
 
 .animate-section .section-title-animated,
@@ -865,7 +865,7 @@ img { display: block; max-width: 100%; }
 
 .btnCta:hover {
   transform: translateY(-2px);
-  background: linear-gradient(160deg, #C85070 0%, #A03060 50%, #882040 100%);
+  background: linear-gradient(160deg, #CFB0B4 0%, #B890A0 50%, #A87888 100%);
   box-shadow:
     0 2px 0 rgba(255,255,255,0.35) inset,
     0 10px 32px rgba(197, 160, 165, 0.65),
@@ -912,7 +912,7 @@ img { display: block; max-width: 100%; }
 
 .btnSubmit:hover {
   transform: translateY(-2px);
-  background: linear-gradient(160deg, #C85070 0%, #A03060 50%, #882040 100%);
+  background: linear-gradient(160deg, #CFB0B4 0%, #B890A0 50%, #A87888 100%);
   box-shadow:
     0 2px 0 rgba(255,255,255,0.35) inset,
     0 10px 32px rgba(197, 160, 165, 0.65),
@@ -935,8 +935,12 @@ img { display: block; max-width: 100%; }
 
 /* ====== SECTIONS ====== */
 .sectionWhite {
-  background: #E7D7DA;
+  background: #FFFFFF;
   padding: 96px 40px;
+}
+
+#servicios.sectionWhite {
+  background: #D5B3B7;
 }
 
 .sectionRosa {
@@ -1010,7 +1014,7 @@ img { display: block; max-width: 100%; }
 
 .sectionLead {
   font-size: clamp(16px, 1.5vw, 19px);
-  color: rgba(255, 255, 255, 0.82);
+  color: #1E1E1E;
   max-width: 700px;
   margin: 0 0 40px;
   line-height: 1.7;
@@ -1666,7 +1670,7 @@ img { display: block; max-width: 100%; }
 }
 
 .contactBody {
-  background: #fff;
+  background: #D5B3B7;
   border-top: 1px solid var(--border-light);
   padding: 72px 40px;
   display: flex;
@@ -1872,7 +1876,7 @@ img { display: block; max-width: 100%; }
 /* ====== RESPONSIVE — MOBILE (≤600px) ====== */
 @media (max-width: 600px) {
   .nav { padding: 0 16px; height: 88px; }
-  .brandLogo { height: 80px; }
+  .brandLogo { height: 120px; }
   .menuMobile { top: 88px; }
 
   .heroCenter {
@@ -2127,7 +2131,7 @@ img { display: block; max-width: 100%; }
 }
 
 .tipoCardLink:hover {
-  background: linear-gradient(160deg, #C85070 0%, #A03060 50%, #882040 100%);
+  background: linear-gradient(160deg, #CFB0B4 0%, #B890A0 50%, #A87888 100%);
   color: #fff;
   transform: translateY(-2px);
   box-shadow:
