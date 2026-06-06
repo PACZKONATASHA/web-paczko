@@ -229,6 +229,19 @@ function TiposDeWeb() {
                     {tipo.incluye.map((item, j) => <li key={j}>{item}</li>)}
                   </ul>
                 </div>
+              </div>
+
+              {/* Columna imagen + botón */}
+              <div className="tipoCardImgCol">
+                <div className="tipoCardImgWrap">
+                  {tipo.imagen ? (
+                    <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
+                  ) : (
+                    <div className="tipoCardImgPlaceholder">
+                      <span className="tipoNumeroBig">{tipo.numero}</span>
+                    </div>
+                  )}
+                </div>
                 {tipo.link && (
                   <a className="tipoCardLink" href={tipo.link} target="_blank" rel="noopener noreferrer">
                     Ver ejemplo en vivo
@@ -238,21 +251,6 @@ function TiposDeWeb() {
                       <line x1="10" y1="14" x2="21" y2="3"/>
                     </svg>
                   </a>
-                )}
-              </div>
-
-              {/* Columna imagen */}
-              <div className="tipoCardImgCol">
-                {tipo.imagen ? (
-                  tipo.link
-                    ? <a href={tipo.link} target="_blank" rel="noopener noreferrer" className="tipoCardImgLink">
-                        <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
-                      </a>
-                    : <img className="tipoCardImg" src={tipo.imagen} alt={`Vista previa: ${tipo.titulo}`} />
-                ) : (
-                  <div className="tipoCardImgPlaceholder">
-                    <span className="tipoNumeroBig">{tipo.numero}</span>
-                  </div>
                 )}
               </div>
             </div>

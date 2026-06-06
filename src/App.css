@@ -1953,12 +1953,18 @@ img { display: block; max-width: 100%; }
 
 /* Columna imagen */
 .tipoCardImgCol {
-  overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.tipoCardImgWrap {
+  flex: 1;
   background: #111;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .tipoCardImg {
@@ -2083,11 +2089,11 @@ img { display: block; max-width: 100%; }
 }
 
 .tipoCardLink {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
-  align-self: flex-start;
-  margin-top: auto;
+  margin: 0;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -2095,14 +2101,10 @@ img { display: block; max-width: 100%; }
   color: #fff;
   background: linear-gradient(160deg, #DFC0C4 0%, #C5A0A5 50%, #B8909A 100%);
   border: none;
-  border-radius: 100px;
-  padding: 10px 22px;
+  border-radius: 0;
+  padding: 14px 22px;
   text-decoration: none;
   transition: all var(--transition-fast);
-  box-shadow:
-    0 2px 0 rgba(255,255,255,0.40) inset,
-    0 5px 16px rgba(197, 160, 165, 0.55),
-    0 1px 4px rgba(120, 80, 90, 0.25);
 }
 
 .tipoCardLink:hover {
