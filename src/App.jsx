@@ -167,7 +167,7 @@ function TiposDeWeb() {
       idealPara: 'Emprendimientos, servicios profesionales, estética, gastronomía, cursos, productos personalizados.',
       incluye: ['Botón de WhatsApp', 'Diseño responsive', 'Información ordenada', 'Imágenes del negocio', 'Redes sociales y ubicación'],
       imagen: '/img/tarjeta-01.png',
-      link: null,
+      link: 'https://golden-detailing.vercel.app/',
     },
     {
       numero: '02',

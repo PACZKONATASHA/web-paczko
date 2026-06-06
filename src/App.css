@@ -6,23 +6,23 @@
   ===================================================== */
 
   /* --- BACKGROUNDS --- */
-  --bg-base:    #F7F3F4;   /* highlight metálico — fondo neutro claro */
-  --bg-soft:    #E7D7DA;   /* fondo secundario */
-  --bg-blush:   #D5B3B7;   /* fondo principal — coincide exacto con la imagen 3D */
-  --bg-dark:    #2D1B22;   /* rosa oscuro para footer */
-  --surface:    #F7F3F4;
+  --bg-base:    #EDE0E3;   /* highlight metálico — fondo neutro claro */
+  --bg-soft:    #D4B8BE;   /* fondo secundario */
+  --bg-blush:   #BE8F95;   /* fondo principal — coincide exacto con la imagen 3D */
+  --bg-dark:    #200F1A;   /* rosa oscuro para footer */
+  --surface:    #EDE0E3;
   --surface-alt:#FFFFFF;
 
   /* --- BRAND — Glow Rosa --- */
-  --pink:         #F3A7B7;   /* glow rosa (color de marca) */
-  --pink-dark:    #D9899E;   /* hover */
-  --pink-light:   #D5B3B7;   /* fondo principal como tono suave */
-  --blush:        #E7D7DA;
-  --blush-medium: #E7D7DA;
+  --pink:         #E8708F;   /* glow rosa (color de marca) */
+  --pink-dark:    #C85070;   /* hover */
+  --pink-light:   #BE8F95;   /* fondo principal como tono suave */
+  --blush:        #D4B8BE;
+  --blush-medium: #D4B8BE;
 
   /* --- SECONDARY --- */
-  --violet:       #F3A7B7;
-  --violet-light: #F7F3F4;
+  --violet:       #E8708F;
+  --violet-light: #EDE0E3;
 
   /* --- TEXT --- */
   --text-primary: #1A1A1A;   /* negro */
@@ -31,23 +31,23 @@
   --text-light:   #FFFFFF;   /* blanco para fondos oscuros */
 
   /* --- BORDERS --- */
-  --border:       rgba(185, 174, 177, 0.40);
-  --border-light: rgba(185, 174, 177, 0.22);
+  --border:       rgba(160, 130, 138, 0.55);
+  --border-light: rgba(160, 130, 138, 0.35);
 
   /* --- COMPATIBILITY ALIASES --- */
-  --gold:          #F3A7B7;
-  --gold-light:    #F7F3F4;
-  --gold-dark:     #D9899E;
-  --dark:          #2D1B22;
-  --rosa:          #F3A7B7;
-  --rosa-dark:     #D9899E;
-  --rosa-light:    #D5B3B7;
+  --gold:          #E8708F;
+  --gold-light:    #EDE0E3;
+  --gold-dark:     #C85070;
+  --dark:          #200F1A;
+  --rosa:          #E8708F;
+  --rosa-dark:     #C85070;
+  --rosa-light:    #BE8F95;
   --blanco:        #FFFFFF;
-  --crema:         #F7F3F4;
-  --crema-oscura:  #E7D7DA;
-  --fondo-claro:   #E7D7DA;
-  --gris-border:   rgba(185, 174, 177, 0.22);
-  --gris-claro:    #F7F3F4;
+  --crema:         #EDE0E3;
+  --crema-oscura:  #D4B8BE;
+  --fondo-claro:   #D4B8BE;
+  --gris-border:   rgba(160, 130, 138, 0.35);
+  --gris-claro:    #EDE0E3;
   --gris-oscuro:   #3D3D3D;
   --texto-oscuro:  #1A1A1A;
   --texto-secundario:        #3D3D3D;
@@ -64,11 +64,11 @@
   --transition-slow:   0.6s ease;
 
   /* --- SHADOWS --- */
-  --shadow-soft:   0 2px 12px rgba(185, 174, 177, 0.18);
-  --shadow-medium: 0 6px 24px rgba(185, 174, 177, 0.26);
-  --shadow-strong: 0 16px 48px rgba(185, 174, 177, 0.34);
-  --glow-rose:     0 4px 24px rgba(243, 167, 183, 0.35);
-  --glow-violet:   0 4px 24px rgba(243, 167, 183, 0.25);
+  --shadow-soft:   0 2px 12px rgba(160, 100, 120, 0.28);
+  --shadow-medium: 0 6px 24px rgba(160, 100, 120, 0.38);
+  --shadow-strong: 0 16px 48px rgba(160, 100, 120, 0.48);
+  --glow-rose:     0 4px 24px rgba(232, 112, 143, 0.55);
+  --glow-violet:   0 4px 24px rgba(232, 112, 143, 0.40);
 }
 
 /* ====== KEYFRAMES ====== */
