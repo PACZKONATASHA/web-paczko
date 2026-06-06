@@ -166,7 +166,7 @@ function TiposDeWeb() {
       descripcion: 'Ideal para mostrar un servicio, producto o emprendimiento de forma clara y directa. Incluye secciones como inicio, información del negocio, servicios, beneficios, ubicación y botón directo a WhatsApp.',
       idealPara: 'Emprendimientos, servicios profesionales, estética, gastronomía, cursos, productos personalizados.',
       incluye: ['Botón de WhatsApp', 'Diseño responsive', 'Información ordenada', 'Imágenes del negocio', 'Redes sociales y ubicación'],
-      imagen: null,
+      imagen: '/img/tarjeta-01.png',
       link: null,
     },
     {
