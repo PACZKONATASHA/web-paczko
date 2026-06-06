@@ -25,9 +25,9 @@
   --violet-light: #EDE0E3;
 
   /* --- TEXT --- */
-  --text-primary: #1A1A1A;   /* negro */
-  --text-body:    #3D3D3D;   /* gris oscuro */
-  --text-muted:   #888888;   /* gris medio */
+  --text-primary: #0D0D0D;   /* negro */
+  --text-body:    #1E1E1E;   /* gris oscuro */
+  --text-muted:   #555555;   /* gris medio */
   --text-light:   #FFFFFF;   /* blanco para fondos oscuros */
 
   /* --- BORDERS --- */
@@ -465,7 +465,7 @@ img { display: block; max-width: 100%; }
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 1);
 }
 
 .heroLabelDot {
@@ -495,7 +495,7 @@ img { display: block; max-width: 100%; }
 .heroSubtitle {
   font-size: 16px;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.80);
+  color: rgba(255, 255, 255, 1);
   margin: 0;
   max-width: 400px;
 }
@@ -635,9 +635,9 @@ img { display: block; max-width: 100%; }
   }
 
   .heroLabel {
-    color: #E91E8C;
+    color: #FFFFFF;
     background: none;
-    -webkit-text-fill-color: #E91E8C;
+    -webkit-text-fill-color: #FFFFFF;
   }
 
   .heroTitle {
@@ -826,6 +826,12 @@ img { display: block; max-width: 100%; }
   flex-shrink: 0;
 }
 
+@keyframes btnGlow {
+  0%   { box-shadow: 0 0 6px 0px rgba(232, 112, 143, 0.4); }
+  50%  { box-shadow: 0 0 20px 4px rgba(232, 112, 143, 0.75); }
+  100% { box-shadow: 0 0 6px 0px rgba(232, 112, 143, 0.4); }
+}
+
 /* ====== BUTTONS (general) ====== */
 .btn {
   display: inline-flex;
@@ -850,6 +856,7 @@ img { display: block; max-width: 100%; }
 .btnCta {
   color: #fff;
   background: linear-gradient(160deg, #DFC0C4 0%, #C5A0A5 50%, #B8909A 100%);
+  animation: btnGlow 2.5s ease-in-out infinite;
   box-shadow:
     0 2px 0 rgba(255,255,255,0.40) inset,
     0 6px 22px rgba(197, 160, 165, 0.55),
@@ -891,6 +898,7 @@ img { display: block; max-width: 100%; }
   width: 100%;
   justify-content: center;
   color: #fff;
+  animation: btnGlow 2.5s ease-in-out infinite;
   background: linear-gradient(160deg, #DFC0C4 0%, #C5A0A5 50%, #B8909A 100%);
   padding: 16px 32px;
   font-size: 14px;
@@ -1661,6 +1669,14 @@ img { display: block; max-width: 100%; }
   background: #fff;
   border-top: 1px solid var(--border-light);
   padding: 72px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactBody .container {
+  width: 100%;
+  max-width: var(--max);
 }
 
 .contactFoto {
@@ -1694,12 +1710,14 @@ img { display: block; max-width: 100%; }
   font-size: clamp(24px, 2.4vw, 34px);
   color: var(--text-primary);
   margin: 0 0 10px;
+  text-align: center;
 }
 
 .formSubtitle {
   font-size: 15px;
   color: var(--text-muted);
   margin: 0 0 36px;
+  text-align: center;
 }
 
 .form-animated {
@@ -1800,7 +1818,7 @@ img { display: block; max-width: 100%; }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.80);
+  color: rgba(255, 255, 255, 1);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -2105,6 +2123,7 @@ img { display: block; max-width: 100%; }
   padding: 14px 22px;
   text-decoration: none;
   transition: all var(--transition-fast);
+  animation: btnGlow 2.5s ease-in-out infinite;
 }
 
 .tipoCardLink:hover {
