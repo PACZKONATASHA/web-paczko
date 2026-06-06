@@ -21,7 +21,7 @@
   --blush-medium: #D4B8BE;
 
   /* --- SECONDARY --- */
-  --violet:       #E8708F;
+  --violet:       #eaa9b9;
   --violet-light: #EDE0E3;
 
   /* --- TEXT --- */
@@ -332,7 +332,7 @@ img { display: block; max-width: 100%; }
 }
 
 .brandLogo {
-  height: 160px;
+  height: 180px;
   width: auto;
   filter: brightness(0) invert(1);
 }
