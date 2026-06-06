@@ -7,8 +7,8 @@
 
   /* --- BACKGROUNDS --- */
   --bg-base:    #EDE0E3;
-  --bg-soft:    #D4B8BE;
-  --bg-blush:   #BE8F95;
+  --bg-soft:    #be8994;
+  --bg-blush:   #bd7881;
   --bg-dark:    #200F1A;
   --surface:    #EDE0E3;
   --surface-alt:#FFFFFF;
@@ -397,7 +397,7 @@ img { display: block; max-width: 100%; }
   flex-direction: column;
   position: fixed;
   top: 176px; left: 0; right: 0;
-  background: rgba(213, 179, 183, 0.97);
+  background: rgba(208, 153, 159, 0.97);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   padding: 0;
@@ -980,21 +980,6 @@ img { display: block; max-width: 100%; }
   .materialContent { padding: 64px 20px; }
 }
 
-/* Tipografía legible sobre imagen con overlay */
-.sectionRosa .container h2,
-.sectionRosa .diferencialContent h2 {
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-}
-
-.sectionRosa .sectionLead {
-  color: rgba(255,255,255,0.88);
-}
-
-.sectionRosa .section-title-animated {
-  color: #ffffff;
-}
-
 .container {
   max-width: var(--max);
   margin: 0 auto;
@@ -1002,12 +987,12 @@ img { display: block; max-width: 100%; }
   z-index: 1;
 }
 
-/* Section headings — blancos en todas las secciones */
+/* Section headings */
 .container h2,
 .diferencialContent h2 {
   font-family: 'DM Serif Display', Georgia, serif;
   font-size: clamp(32px, 3.8vw, 56px);
-  color: #ffffff;
+  color: #0D0D0D;
   margin: 0 0 12px;
   line-height: 1.1;
 }
